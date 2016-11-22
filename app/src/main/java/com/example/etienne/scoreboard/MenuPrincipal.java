@@ -15,12 +15,29 @@ public class MenuPrincipal extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal);
-        Button bouton1 = (Button) findViewById(R.id.button3);
-        bouton1.setOnClickListener(new OnClickListener() {
+        Button quitter = (Button) findViewById(R.id.button3);
+        Button inscription = (Button) findViewById(R.id.button2);
+        Button scoreboard = (Button) findViewById(R.id.button);
+
+        quitter.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 System.exit(0);
+            }
+        });
+
+        inscription.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cool méthode qui envoie a la screen pour inscrire les joueurs des équipes.
+            }
+        });
+
+        scoreboard.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cool méthode qui envoie a la screen du cancer.
             }
         });
     }
