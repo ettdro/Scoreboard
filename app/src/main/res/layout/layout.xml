@@ -1,0 +1,257 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:layout_width="479dp"
+        android:layout_x="26dp"
+        android:layout_y="548dp"
+        android:id="@+id/listViewPenaltyV"
+        android:layout_height="200dp" />
+
+    <Spinner
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_x="24dp"
+        android:layout_y="490dp"
+        android:id="@+id/spinnerPenaltyV"
+        style="@android:style/Widget.Spinner" />
+
+    <Spinner
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_x="979dp"
+        android:layout_y="490dp"
+        android:id="@+id/spinnerPenaltyL"
+        android:entries="@array/spinnerItems"
+        style="@android:style/Widget.Spinner" />
+
+    <ListView
+        android:layout_width="479dp"
+        android:layout_x="778dp"
+        android:layout_y="548dp"
+        android:id="@+id/listViewPenaltyL"
+        android:layout_height="200dp" />
+
+    <Button
+        android:text="Start"
+        android:layout_width="227dp"
+        android:layout_height="71dp"
+        android:layout_x="530dp"
+        android:layout_y="489dp"
+        android:id="@+id/buttonStart"
+        android:backgroundTint="#04ff00"
+        android:textSize="36sp" />
+
+    <Button
+        android:text="Stop"
+        android:layout_width="227dp"
+        android:layout_x="530dp"
+        android:layout_y="652dp"
+        android:id="@+id/buttonStop"
+        android:backgroundTint="#FF0000"
+        android:layout_height="71dp"
+        android:textSize="36sp" />
+
+    <Button
+        android:text="Pause"
+        android:layout_width="227dp"
+        android:layout_height="71dp"
+        android:layout_x="530dp"
+        android:layout_y="571dp"
+        android:id="@+id/buttonPause"
+        android:backgroundTint="#FFE500"
+        android:textSize="36sp" />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_x="163dp"
+        android:layout_y="136dp"
+        android:id="@+id/buttonScoreUpV"
+        android:text="+"
+        android:textSize="36sp"
+        android:layout_width="157dp" />
+
+    <TextView
+        android:text="VISITEUR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="72dp"
+        android:layout_y="22dp"
+        android:id="@+id/visiteurLabel"
+        android:textStyle="normal|bold"
+        android:textSize="80sp" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="200dp"
+        android:layout_y="179dp"
+        android:id="@+id/scoreVisiteur"
+        android:textSize="150sp"
+        android:textStyle="normal|bold"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:text="LOCAL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="910dp"
+        android:layout_y="22dp"
+        android:id="@+id/localLabel"
+        android:textStyle="normal|bold"
+        android:textSize="80sp" />
+
+    <Button
+        android:text="-"
+        android:layout_height="wrap_content"
+        android:layout_x="163dp"
+        android:layout_y="350dp"
+        android:id="@+id/buttonScoreDownV"
+        android:layout_width="157dp"
+        android:textSize="36sp" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="986dp"
+        android:layout_y="179dp"
+        android:id="@+id/scoreLocal"
+        android:textSize="150sp"
+        android:textStyle="normal|bold" />
+
+    <Button
+        android:text="-"
+        android:layout_height="wrap_content"
+        android:layout_x="951dp"
+        android:layout_y="351dp"
+        android:id="@+id/buttonScoreDownLocal"
+        android:layout_width="157dp"
+        android:textSize="36sp" />
+
+    <Button
+        android:text="+"
+        android:layout_height="wrap_content"
+        android:layout_x="951dp"
+        android:layout_y="136dp"
+        android:id="@+id/buttonScoreUpLocal"
+        android:layout_width="157dp"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:layout_width="247dp"
+        android:layout_height="110dp"
+        app:srcCompat="?attr/colorButtonNormal"
+        android:layout_x="528dp"
+        android:layout_y="23dp"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
+        android:id="@+id/imageViewChrono" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="537dp"
+        android:layout_y="23dp"
+        android:id="@+id/chronometer"
+        android:textStyle="normal|bold"
+        android:textSize="90sp"
+        android:visibility="visible" />
+
+    <Button
+        android:text="+"
+        android:layout_width="76dp"
+        android:layout_height="61dp"
+        android:layout_x="530dp"
+        android:layout_y="210dp"
+        android:id="@+id/buttonTirsUpV"
+        android:textSize="14sp" />
+
+    <Button
+        android:text="+"
+        android:layout_x="691dp"
+        android:layout_y="210dp"
+        android:id="@+id/buttonTirsUpL"
+        android:textSize="14sp"
+        android:layout_width="76dp"
+        android:layout_height="61dp" />
+
+    <Button
+        android:text="-"
+        android:layout_x="691dp"
+        android:layout_y="360dp"
+        android:id="@+id/buttonTirsDownL"
+        android:textSize="14sp"
+        android:layout_width="76dp"
+        android:layout_height="61dp" />
+
+    <Button
+        android:text="-"
+        android:layout_x="530dp"
+        android:layout_y="360dp"
+        android:id="@+id/buttonTirsDownV"
+        android:textSize="14sp"
+        android:layout_width="76dp"
+        android:layout_height="61dp" />
+
+    <TextView
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="709dp"
+        android:layout_y="142dp"
+        android:id="@+id/periode"
+        android:textSize="50sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="PÉRIODE:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="547dp"
+        android:layout_y="152dp"
+        android:id="@+id/periodeLabel"
+        android:textSize="36sp" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="552dp"
+        android:layout_y="282dp"
+        android:id="@+id/tirsVisiteur"
+        android:textSize="60sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="715dp"
+        android:layout_y="280dp"
+        android:id="@+id/tirsLocal"
+        android:textSize="60sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="TIRS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="612dp"
+        android:layout_y="295dp"
+        android:id="@+id/textView"
+        android:textSize="36sp" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_x="787dp"
+        android:layout_y="52dp"
+        android:drawableStart="@android:drawable/ic_dialog_dialer"
+        android:id="@+id/buttonSetTimer" />
+
+</AbsoluteLayout>
