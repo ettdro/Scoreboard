@@ -25,7 +25,6 @@
         android:layout_x="979dp"
         android:layout_y="490dp"
         android:id="@+id/spinnerPenaltyL"
-        android:entries="@array/spinnerItems"
         style="@android:style/Widget.Spinner" />
 
     <ListView
@@ -152,16 +151,6 @@
         android:minHeight="100dp"
         android:id="@+id/imageViewChrono" />
 
-    <Chronometer
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="537dp"
-        android:layout_y="23dp"
-        android:id="@+id/chronometer"
-        android:textStyle="normal|bold"
-        android:textSize="90sp"
-        android:visibility="visible" />
-
     <Button
         android:text="+"
         android:layout_width="76dp"
@@ -261,5 +250,16 @@
         android:layout_x="29dp"
         android:layout_y="464dp"
         android:id="@+id/txtView" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="10dip"
+        android:textSize="50dp"
+        android:layout_x="549dp"
+        android:layout_y="52dp" />
 
 </AbsoluteLayout>

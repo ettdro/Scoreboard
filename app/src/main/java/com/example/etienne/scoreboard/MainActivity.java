@@ -2,6 +2,7 @@ package com.example.etienne.scoreboard;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,6 +57,16 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tirsLabelV;
     private TextView tirsLabelL;
+    private boolean isPaused;
+    private long time;
+
+    CountDownTimer timer;
+    private long milliLeft;
+    private long min;
+    private long sec;
+
+    TextView timerText;
+    private boolean timerHasStarted;
 
 
     @Override
@@ -67,10 +78,51 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertJoueur(nomV);
         dbHelper.insertJoueur(nomL);
 
+        TextView txtView = (TextView) findViewById(R.id.txtView);
+        this.timerText = (TextView) findViewById(R.id.timerText);
+
         ArrayList<String> listeJoueurs = dbHelper.getAllJoueurs();
         Spinner spinnerPenaltyV = (Spinner)findViewById(R.id.spinnerPenaltyV);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.main_layout,R.id.txtView, listeJoueurs);
-        spinnerPenaltyV.setAdapter(adapter);
+
+        // Mettre les données que l'utilisateur va entrer manuellement dans les paramètres.
+//        final CountDownTimer timer = new CountDownTimer(time, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                time = millisUntilFinished;
+//                timerText.setText("0" + time / 60000 + " : " + time / 1000 % 60 );
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                timerText.setText("00:00");
+//
+//            }
+//        };
+
+        final Button buttonStart = (Button) findViewById(R.id.buttonStart);
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (isPaused) {
+                    isPaused = false;
+                    timerResume();
+                } else {
+                    timerHasStarted = true;
+                    timerStart(30*1000);
+                }
+                timer.start();
+            }
+        });
+
+        final Button buttonPause = (Button) findViewById(R.id.buttonPause);
+        buttonPause.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                timerPause();
+            }
+        });
+
+        //timer.start();
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.main_layout, txtView.getId(), listeJoueurs);
+        //spinnerPenaltyV.setAdapter(adapter);
 
         //JoueurCRUD db = new JoueurCRUD(this);
 
@@ -209,6 +261,35 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void timerStart(long timeLengthMilli) {
+        timer = new CountDownTimer(timeLengthMilli, 1000) {
+
+            @Override
+            public void onTick(long milliTillFinish) {
+                milliLeft = milliTillFinish;
+                min = (milliTillFinish / (1000 * 60));
+                sec = ((milliTillFinish / 1000) - min * 60);
+                timerText.setText(Long.toString(min) + ":" + Long.toString(sec));
+            }
+
+            @Override
+            public void onFinish() {
+                timerText.setText("00:00");
+            }
+        };
+
+    }
+
+    public void timerPause() {
+        isPaused = true;
+        timer.cancel();
+    }
+
+    private void timerResume() {
+        timer = null;
+        timerStart(milliLeft);
     }
 
     /**
