@@ -254,4 +254,12 @@
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/buttonSetTimer" />
 
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="29dp"
+        android:layout_y="464dp"
+        android:id="@+id/txtView" />
+
 </AbsoluteLayout>

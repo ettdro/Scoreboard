@@ -28,7 +28,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int scoreV = 0;
     private List<Joueur> listeJoueursVisiteur;
     private List<Joueur> listeJoueursLocal;
 
@@ -42,49 +41,71 @@ public class MainActivity extends AppCompatActivity {
     private String positionL = "AG";
     private int equipeL = 1;
 
-    private Spinner spinnerPenaltyV;
-    private Spinner spinnerPenaltyL;
+    //private Spinner spinnerPenaltyV;
+    //private Spinner spinnerPenaltyL;
 
-    private int tirsV = 0;
-    static TextView scoreVLabel;
+    private int tirsVisiteurs = 0;
+    private int tirsLocaux = 0;
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+
+    private TextView scoreVLabel;
+    private TextView scoreLLabel;
+
+    private int scoreL = 0;
+    private int scoreV = 0;
+
+    private TextView tirsLabelV;
+    private TextView tirsLabelL;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout);
+        DBHelper dbHelper = new DBHelper(this);
 
-        JoueurCRUD db = new JoueurCRUD(this);
-        Joueur joueurV = new Joueur();
+        dbHelper.insertJoueur(nomV);
+        dbHelper.insertJoueur(nomL);
+
+        ArrayList<String> listeJoueurs = dbHelper.getAllJoueurs();
+        Spinner spinnerPenaltyV = (Spinner)findViewById(R.id.spinnerPenaltyV);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.main_layout,R.id.txtView, listeJoueurs);
+        spinnerPenaltyV.setAdapter(adapter);
+
+        //JoueurCRUD db = new JoueurCRUD(this);
+
+
+        //Joueur joueurV = new Joueur();
+        /*
         Joueur joueurL = new Joueur();
         this.listeJoueursVisiteur = new ArrayList<Joueur>();
         this.listeJoueursLocal = new ArrayList<Joueur>();
 
         Popup popup = new Popup();
         this.scoreV = popup.getScoreV();
+        */
 
-        scoreVLabel = (TextView) findViewById(R.id.scoreVisiteur);
 
+        /*
         joueurV.nom = this.nomV;
         joueurV.numero = this.numeroV;
         joueurV.position = this.positionV;
         joueurV.equipe = this.equipeV;
 
+        db.insert(joueurV);
+        */
+
+
+
+        /*
         joueurL.nom = this.nomL;
         joueurL.numero = this.numeroL;
         joueurL.position = this.positionL;
         joueurL.equipe = this.equipeL;
+        */
 
 
-        final TextView tirsVLabel = (TextView) findViewById(R.id.tirsVisiteur);
-
-
-
+        /*
         db.deleteAll();
         for (int i = 0; i < 23; i++) {
             db.insert(joueurV);
@@ -95,33 +116,99 @@ public class MainActivity extends AppCompatActivity {
             db.insert(joueurL);
             this.listeJoueursLocal.add(joueurL);
         }
+        */
 
-        setContentView(R.layout.layout);
-
+        // Score visiteurs
+        scoreVLabel = (TextView) findViewById(R.id.scoreVisiteur);
         final Button scoreVUpButton = (Button) findViewById(R.id.buttonScoreUpV);
         scoreVUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Popup.class));
+                scoreV++;
+                scoreVLabel.setText(String.valueOf(scoreV));
+                //startActivity(new Intent(MainActivity.this, Popup.class));
             }
         });
 
+        final Button scoreVDownButton = (Button) findViewById(R.id.buttonScoreDownV);
+        scoreVDownButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (scoreV > 0) {
+                    scoreV--;
+                    scoreVLabel.setText(String.valueOf(scoreV));
+                } else {
+                    scoreVLabel.setText(String.valueOf(0));
+                }
+                //startActivity(new Intent(MainActivity.this, Popup.class));
+            }
+        });
+
+        // Score locaux
+        scoreLLabel = (TextView) findViewById(R.id.scoreLocal);
+        final Button scoreLUpButton = (Button) findViewById(R.id.buttonScoreUpLocal);
+        scoreLUpButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                scoreL++;
+                scoreLLabel.setText(String.valueOf(scoreL));
+                //startActivity(new Intent(MainActivity.this, Popup.class));
+            }
+        });
+
+        final Button scoreLDownButton = (Button) findViewById(R.id.buttonScoreDownLocal);
+        scoreLDownButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (scoreL > 0) {
+                    scoreL--;
+                    scoreLLabel.setText(String.valueOf(scoreL));
+                } else {
+                    scoreLLabel.setText(String.valueOf(0));
+                }
+                //startActivity(new Intent(MainActivity.this, Popup.class));
+            }
+        });
+
+        // Tirs visiteurs
+        tirsLabelV = (TextView) findViewById(R.id.tirsVisiteur);
         final Button tirsVUpButton = (Button) findViewById(R.id.buttonTirsUpV);
         tirsVUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                tirsV++;
-
-                tirsVLabel.setText(String.valueOf(tirsV));
+                tirsVisiteurs++;
+                tirsLabelV.setText(String.valueOf(tirsVisiteurs));
             }
         });
 
-        this.spinnerPenaltyV = (Spinner) findViewById(R.id.spinnerPenaltyV);
-        this.spinnerPenaltyL = (Spinner) findViewById(R.id.spinnerPenaltyL);
+        final Button tirsVDownButton = (Button) findViewById(R.id.buttonTirsDownV);
+        tirsVDownButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (tirsVisiteurs > 0) {
+                    tirsVisiteurs--;
+                    tirsLabelV.setText(String.valueOf(tirsVisiteurs));
+                } else {
+                    tirsLabelV.setText(String.valueOf(0));
+                }
+            }
+        });
 
-        loadSpinnerData();
+        // Tirs locaux
+        tirsLabelL = (TextView) findViewById(R.id.tirsLocal);
+        final Button tirsLUpButton = (Button) findViewById(R.id.buttonTirsUpL);
+        tirsLUpButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tirsLocaux++;
+                tirsLabelL.setText(String.valueOf(tirsLocaux));
+            }
+        });
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        final Button tirsLDownButton = (Button) findViewById(R.id.buttonTirsDownL);
+        tirsLDownButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (tirsLocaux > 0) {
+                    tirsLocaux--;
+                    tirsLabelL.setText(String.valueOf(tirsLocaux));
+                } else {
+                    tirsLabelL.setText(String.valueOf(0));
+                }
+            }
+        });
     }
 
     /**
@@ -133,56 +220,16 @@ public class MainActivity extends AppCompatActivity {
         List<String> joueursV = db.getJoueurListe(0);
         List<String> joueursL = db.getJoueurListe(1);
 
-        ArrayAdapter<String> dataAdapterV = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> dataAdapterV = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, joueursV);
 
-        ArrayAdapter<String> dataAdapterL = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> dataAdapterL = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, joueursL);
 
         dataAdapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dataAdapterL.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        this.spinnerPenaltyV.setAdapter(dataAdapterV);
-        this.spinnerPenaltyL.setAdapter(dataAdapterL);
-    }
-
-    public static void scoreUPVisitor(int score) {
-        scoreVLabel.setText(String.valueOf(score));
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
+        //this.spinnerPenaltyV.setAdapter(dataAdapterV);
+        //this.spinnerPenaltyL.setAdapter(dataAdapterL);
     }
 }

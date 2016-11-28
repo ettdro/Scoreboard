@@ -43,7 +43,6 @@ public class Popup extends Activity {
             public void onClick(View v) {
                 //Add the players to DB.
                 scoreV++;
-                MainActivity.scoreUPVisitor(scoreV);
                 finish();
             }
         });

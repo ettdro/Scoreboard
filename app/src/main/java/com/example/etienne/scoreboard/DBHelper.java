@@ -1,8 +1,12 @@
 package com.example.etienne.scoreboard;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by Étienne on 2016-11-03.
@@ -42,5 +46,46 @@ public class DBHelper extends SQLiteOpenHelper{
         // Create tables again
         onCreate(db);
 
+    }
+
+    public void insertJoueur(String nom) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        ContentValues values;
+        try {
+            values = new ContentValues();
+            values.put("nom", nom);
+            db.insert(Joueur.TABLE, null, values);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {e.printStackTrace();}
+        finally {
+            db.endTransaction();
+            db.close();
+        }
+
+    }
+
+    public ArrayList<String> getAllJoueurs() {
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + Joueur.TABLE;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            if(cursor.getCount()>0) {
+                while(cursor.moveToNext()) {
+                    String nom = cursor.getString(cursor.getColumnIndex("nom"));
+                    list.add(nom);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return list;
     }
 }
