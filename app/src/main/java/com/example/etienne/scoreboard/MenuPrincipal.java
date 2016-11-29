@@ -5,6 +5,7 @@ package com.example.etienne.scoreboard;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,7 +38,7 @@ public class MenuPrincipal extends Activity {
         scoreboard.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Cool méthode qui envoie a la screen du cancer.
+                startActivity(new Intent(MenuPrincipal.this, MainActivity.class));
             }
         });
     }
