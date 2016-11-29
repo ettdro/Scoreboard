@@ -45,11 +45,11 @@
         android:textSize="36sp" />
 
     <Button
-        android:text="Stop"
+        android:text="Reset"
         android:layout_width="227dp"
         android:layout_x="530dp"
         android:layout_y="652dp"
-        android:id="@+id/buttonStop"
+        android:id="@+id/buttonReset"
         android:backgroundTint="#FF0000"
         android:layout_height="71dp"
         android:textSize="36sp" />
@@ -193,7 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_x="709dp"
         android:layout_y="142dp"
-        android:id="@+id/periode"
+        android:id="@+id/periodeText"
         android:textSize="50sp"
         android:textStyle="normal|bold" />
 
@@ -258,7 +258,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:paddingRight="10dip"
-        android:textSize="50dp"
+        android:textSize="72dp"
         android:layout_x="549dp"
         android:layout_y="52dp" />
 

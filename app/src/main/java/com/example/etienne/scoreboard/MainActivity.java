@@ -1,17 +1,23 @@
 package com.example.etienne.scoreboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Debug;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -57,14 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tirsLabelV;
     private TextView tirsLabelL;
+
+    TextView periodeText;
+    int periode = 1;
+
+    // TIMER
     private boolean isPaused;
     private long time;
-
     CountDownTimer timer;
     private long milliLeft;
     private long min;
     private long sec;
-
     TextView timerText;
     private boolean timerHasStarted;
 
@@ -78,8 +87,10 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertJoueur(nomV);
         dbHelper.insertJoueur(nomL);
 
-        TextView txtView = (TextView) findViewById(R.id.txtView);
+        //TextView txtView = (TextView) findViewById(R.id.txtView);
         this.timerText = (TextView) findViewById(R.id.timerText);
+        this.periodeText = (TextView) findViewById(R.id.periodeText);
+
 
         ArrayList<String> listeJoueurs = dbHelper.getAllJoueurs();
         Spinner spinnerPenaltyV = (Spinner)findViewById(R.id.spinnerPenaltyV);
@@ -105,11 +116,18 @@ public class MainActivity extends AppCompatActivity {
                 if (isPaused) {
                     isPaused = false;
                     timerResume();
+                    timer.start();
                 } else {
-                    timerHasStarted = true;
-                    timerStart(30*1000);
+                    if (timerHasStarted) {
+                    } else {
+                        if (time == 0) {
+                        } else {
+                            timerHasStarted = true;
+                            timerStart(time * 60000);
+                            timer.start();
+                        }
+                    }
                 }
-                timer.start();
             }
         });
 
@@ -117,6 +135,50 @@ public class MainActivity extends AppCompatActivity {
         buttonPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 timerPause();
+            }
+        });
+
+        final Button buttonReset = (Button) findViewById(R.id.buttonReset);
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                timerHasStarted = false;
+                isPaused = false;
+                time = 0;
+                timer.cancel();
+                timerText.setText(String.valueOf("00:00"));
+            }
+        });
+
+        final Button buttonSetTimer = (Button) findViewById(R.id.buttonSetTimer);
+        buttonSetTimer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("Entrez le temps");
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input.setRawInputType(Configuration.KEYBOARD_12KEY);
+                input.setFilters(FilterArray);
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if (!(input.getText().toString().isEmpty())) {
+                            time = Long.valueOf(input.getText().toString());
+                            if (time < 10) {
+                                timerText.setText("0" + String.valueOf(time) + ":00");
+                            } else {
+                                timerText.setText(String.valueOf(time + ":00"));
+                            }
+                        }
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //Put actions for CANCEL button here, or leave in blank
+                    }
+                });
+                alert.show();
             }
         });
 
@@ -271,12 +333,28 @@ public class MainActivity extends AppCompatActivity {
                 milliLeft = milliTillFinish;
                 min = (milliTillFinish / (1000 * 60));
                 sec = ((milliTillFinish / 1000) - min * 60);
-                timerText.setText(Long.toString(min) + ":" + Long.toString(sec));
+                if (min < 10) {
+                    timerText.setText("0" + Long.toString(min) + ":" + "0" + Long.toString(sec));
+                } else {
+                    timerText.setText(Long.toString(min) + ":" + "0" + Long.toString(sec));
+                }
+                if (sec < 10) {
+                    timerText.setText(Long.toString(min) + ":" + "0" + Long.toString(sec));
+                } else {
+                    timerText.setText(Long.toString(min) + ":" + Long.toString(sec));
+                }
             }
 
             @Override
             public void onFinish() {
-                timerText.setText("00:00");
+                if (time < 10) {
+                    timerText.setText("0" + String.valueOf(time) + ":00");
+                } else {
+                    timerText.setText(String.valueOf(time + ":00"));
+                }
+                timerHasStarted = false;
+                periode++;
+                periodeText.setText(String.valueOf(periode));
             }
         };
 
