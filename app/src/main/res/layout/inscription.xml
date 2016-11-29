@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="TitreTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="434dp"
+        android:layout_y="12dp"
+        android:id="@+id/TitreTxt"
+        android:textSize="72sp"
+        tools:text="Inscription"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="ArbitresTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="20dp"
+        android:layout_y="139dp"
+        android:id="@+id/ArbitresTxt"
+        tools:text="Arbitres"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <Button
+        android:text="Retour"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_x="1058dp"
+        android:layout_y="657dp"
+        android:id="@+id/boutonRetour"
+        android:textSize="24sp"
+        android:background="#FF0000"/>
+
+    <Button
+        android:text="Sauvegarder"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_x="842dp"
+        android:layout_y="657dp"
+        android:id="@+id/boutonSauvegarder"
+        android:textSize="24sp"
+        android:background="#31CC0E"/>
+
+    <TextView
+        android:text="JugesButTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="21dp"
+        android:layout_y="525dp"
+        android:id="@+id/JugesButTxt"
+        tools:text="Juges de but"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="JugesLignesTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="27dp"
+        android:layout_y="327dp"
+        android:id="@+id/JugesLignesTxt"
+        tools:text="Juges de lignes"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="LocalTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="557dp"
+        android:layout_y="137dp"
+        android:id="@+id/LocalTxt"
+        tools:text="Local"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="VisiteurTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="973dp"
+        android:layout_y="144dp"
+        android:id="@+id/VisiteurTxt"
+        tools:text="Visiteur"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="AnnonceurTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="283dp"
+        android:layout_y="136dp"
+        android:id="@+id/AnnonceurTxt"
+        tools:text="Annonceur"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <EditText
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Annonceur_input"
+        android:ems="10"
+        android:layout_x="312dp"
+        android:layout_y="181dp"
+        android:id="@+id/Annonceur_input"
+        tools:text="Nom" />
+
+    <TextView
+        android:text="ChronometreurTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="282dp"
+        android:layout_y="254dp"
+        android:id="@+id/ChronometreurTxt"
+        tools:text="Chronométreur"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <EditText
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Chronometreur_input"
+        android:ems="10"
+        android:layout_x="312dp"
+        android:layout_y="298dp"
+        android:id="@+id/Chronometreur_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Marqueur_input"
+        android:ems="10"
+        android:layout_x="314dp"
+        android:layout_y="414dp"
+        android:id="@+id/Marqueur_input"
+        tools:text="Nom" />
+
+    <TextView
+        android:text="MarqueurTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="280dp"
+        android:layout_y="373dp"
+        android:id="@+id/MarqueurTxt"
+        tools:text="Marqueur"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <EditText
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Arbitre1_input"
+        android:ems="10"
+        android:layout_x="47dp"
+        android:layout_y="190dp"
+        android:id="@+id/Arbitre1_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="JugeL1_input"
+        android:ems="10"
+        android:layout_x="47dp"
+        android:layout_y="379dp"
+        android:id="@+id/JugeL1_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="JugeL2_input"
+        android:ems="10"
+        android:layout_x="46dp"
+        android:layout_y="450dp"
+        android:id="@+id/JugeL2_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="JugeB2_input"
+        android:ems="10"
+        android:layout_x="48dp"
+        android:layout_y="640dp"
+        android:id="@+id/JugeB2_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="JugeB1_input"
+        android:ems="10"
+        android:layout_x="47dp"
+        android:layout_y="578dp"
+        android:id="@+id/JugeB1_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Arbitre2_input"
+        android:ems="10"
+        android:layout_x="42dp"
+        android:layout_y="251dp"
+        android:id="@+id/Arbitre2_input"
+        tools:text="Nom" />
+
+    <TextView
+        android:text="CoachLocTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="586dp"
+        android:layout_y="256dp"
+        android:id="@+id/CoachLocTxt"
+        tools:text="Coach"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="AssCoachLocTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="522dp"
+        android:layout_y="361dp"
+        android:id="@+id/AssCoachLocTxt"
+        tools:text="Assistant Coach"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="CoachVisTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="974dp"
+        android:layout_y="237dp"
+        android:id="@+id/CoachVisTxt"
+        tools:text="Coach"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="AssCoachVisTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="919dp"
+        android:layout_y="391dp"
+        android:id="@+id/AssCoachVisTxt"
+        tools:text="Assistant Coach"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+</AbsoluteLayout>

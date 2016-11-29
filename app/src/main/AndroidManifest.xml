@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuPrincipal">
+        <activity android:name=".MenuPrincipal"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +19,10 @@
 
         <activity android:name=".MainActivity"
             android:screenOrientation="landscape">
+        </activity>
 
+        <activity android:name=".InscriptionActivity"
+            android:screenOrientation="landscape">
         </activity>
         
         <activity android:name=".Popup"

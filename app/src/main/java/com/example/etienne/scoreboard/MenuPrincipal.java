@@ -31,7 +31,7 @@ public class MenuPrincipal extends Activity {
         inscription.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Cool méthode qui envoie a la screen pour inscrire les joueurs des équipes.
+                startActivity(new Intent(MenuPrincipal.this, InscriptionActivity.class));
             }
         });
 

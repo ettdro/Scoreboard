@@ -21,6 +21,7 @@
         android:layout_x="301dp"
         android:layout_y="252dp"
         android:id="@+id/button"
+        android:textSize="24sp"
         android:background="#31CC0E" />
 
     <Button
@@ -30,6 +31,7 @@
         android:layout_x="706dp"
         android:layout_y="252dp"
         android:id="@+id/button2"
+        android:textSize="24sp"
         android:background="#FFFF00" />
 
     <Button
@@ -39,5 +41,6 @@
         android:layout_x="508dp"
         android:layout_y="477dp"
         android:id="@+id/button3"
+        android:textSize="24sp"
         android:background="#FF0000"/>
 </AbsoluteLayout>
