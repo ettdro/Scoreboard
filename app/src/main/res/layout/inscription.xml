@@ -50,7 +50,7 @@
         android:text="JugesButTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="21dp"
+        android:layout_x="20dp"
         android:layout_y="525dp"
         android:id="@+id/JugesButTxt"
         tools:text="Juges de but"
@@ -61,7 +61,7 @@
         android:text="JugesLignesTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="27dp"
+        android:layout_x="20dp"
         android:layout_y="327dp"
         android:id="@+id/JugesLignesTxt"
         tools:text="Juges de lignes"
@@ -69,32 +69,10 @@
         android:textColor="#000000" />
 
     <TextView
-        android:text="LocalTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="557dp"
-        android:layout_y="137dp"
-        android:id="@+id/LocalTxt"
-        tools:text="Local"
-        android:textSize="24sp"
-        android:textColor="#000000" />
-
-    <TextView
-        android:text="VisiteurTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="973dp"
-        android:layout_y="144dp"
-        android:id="@+id/VisiteurTxt"
-        tools:text="Visiteur"
-        android:textSize="24sp"
-        android:textColor="#000000" />
-
-    <TextView
         android:text="AnnonceurTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="283dp"
+        android:layout_x="280dp"
         android:layout_y="136dp"
         android:id="@+id/AnnonceurTxt"
         tools:text="Annonceur"
@@ -107,7 +85,7 @@
         android:inputType="textPersonName"
         android:text="Annonceur_input"
         android:ems="10"
-        android:layout_x="312dp"
+        android:layout_x="305dp"
         android:layout_y="181dp"
         android:id="@+id/Annonceur_input"
         tools:text="Nom" />
@@ -116,7 +94,7 @@
         android:text="ChronometreurTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="282dp"
+        android:layout_x="280dp"
         android:layout_y="254dp"
         android:id="@+id/ChronometreurTxt"
         tools:text="Chronométreur"
@@ -129,7 +107,7 @@
         android:inputType="textPersonName"
         android:text="Chronometreur_input"
         android:ems="10"
-        android:layout_x="312dp"
+        android:layout_x="305dp"
         android:layout_y="298dp"
         android:id="@+id/Chronometreur_input"
         tools:text="Nom" />
@@ -140,7 +118,7 @@
         android:inputType="textPersonName"
         android:text="Marqueur_input"
         android:ems="10"
-        android:layout_x="314dp"
+        android:layout_x="305dp"
         android:layout_y="414dp"
         android:id="@+id/Marqueur_input"
         tools:text="Nom" />
@@ -162,7 +140,7 @@
         android:inputType="textPersonName"
         android:text="Arbitre1_input"
         android:ems="10"
-        android:layout_x="47dp"
+        android:layout_x="45dp"
         android:layout_y="190dp"
         android:id="@+id/Arbitre1_input"
         tools:text="Nom" />
@@ -173,7 +151,7 @@
         android:inputType="textPersonName"
         android:text="JugeL1_input"
         android:ems="10"
-        android:layout_x="47dp"
+        android:layout_x="45dp"
         android:layout_y="379dp"
         android:id="@+id/JugeL1_input"
         tools:text="Nom" />
@@ -184,7 +162,7 @@
         android:inputType="textPersonName"
         android:text="JugeL2_input"
         android:ems="10"
-        android:layout_x="46dp"
+        android:layout_x="45dp"
         android:layout_y="450dp"
         android:id="@+id/JugeL2_input"
         tools:text="Nom" />
@@ -195,7 +173,7 @@
         android:inputType="textPersonName"
         android:text="JugeB2_input"
         android:ems="10"
-        android:layout_x="48dp"
+        android:layout_x="45dp"
         android:layout_y="640dp"
         android:id="@+id/JugeB2_input"
         tools:text="Nom" />
@@ -206,7 +184,7 @@
         android:inputType="textPersonName"
         android:text="JugeB1_input"
         android:ems="10"
-        android:layout_x="47dp"
+        android:layout_x="45dp"
         android:layout_y="578dp"
         android:id="@+id/JugeB1_input"
         tools:text="Nom" />
@@ -217,18 +195,51 @@
         android:inputType="textPersonName"
         android:text="Arbitre2_input"
         android:ems="10"
-        android:layout_x="42dp"
+        android:layout_x="45dp"
         android:layout_y="251dp"
         android:id="@+id/Arbitre2_input"
         tools:text="Nom" />
 
     <TextView
+        android:text="LocalTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="643dp"
+        android:layout_y="136dp"
+        android:id="@+id/LocalTxt"
+        tools:text="Local"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="VisiteurTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1005dp"
+        android:layout_y="136dp"
+        android:id="@+id/VisiteurTxt"
+        tools:text="Visiteur"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
         android:text="CoachLocTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="586dp"
-        android:layout_y="256dp"
+        android:layout_x="531dp"
+        android:layout_y="181dp"
         android:id="@+id/CoachLocTxt"
+        tools:text="Coach"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:text="CoachVisTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="900dp"
+        android:layout_y="181dp"
+        android:id="@+id/CoachVisTxt"
         tools:text="Coach"
         android:textSize="24sp"
         android:textColor="#000000" />
@@ -237,21 +248,10 @@
         android:text="AssCoachLocTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="522dp"
-        android:layout_y="361dp"
+        android:layout_x="531dp"
+        android:layout_y="275dp"
         android:id="@+id/AssCoachLocTxt"
         tools:text="Assistant Coach"
-        android:textSize="24sp"
-        android:textColor="#000000" />
-
-    <TextView
-        android:text="CoachVisTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="974dp"
-        android:layout_y="237dp"
-        android:id="@+id/CoachVisTxt"
-        tools:text="Coach"
         android:textSize="24sp"
         android:textColor="#000000" />
 
@@ -259,10 +259,157 @@
         android:text="AssCoachVisTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="919dp"
-        android:layout_y="391dp"
+        android:layout_x="900dp"
+        android:layout_y="275dp"
         android:id="@+id/AssCoachVisTxt"
         tools:text="Assistant Coach"
         android:textSize="24sp"
         android:textColor="#000000" />
+
+    <EditText
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="CoachVis_input"
+        android:ems="10"
+        android:layout_x="920dp"
+        android:layout_y="220dp"
+        android:id="@+id/CoachVis_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="CoachLoc_input"
+        android:ems="10"
+        android:layout_x="551dp"
+        android:layout_y="220dp"
+        android:id="@+id/CoachLoc_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="AssCoachVis_input"
+        android:ems="10"
+        android:layout_x="920dp"
+        android:layout_y="310dp"
+        android:id="@+id/AssCoachVis_input"
+        tools:text="Nom" />
+
+    <TextView
+        android:text="Joueur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="900dp"
+        android:layout_y="367dp"
+        android:id="@+id/JoueurVisTxt"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_x="711dp"
+        android:layout_y="405dp"
+        android:id="@+id/NumeroJoueurLoc" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_x="791dp"
+        android:layout_y="405dp"
+        android:id="@+id/PositionJoueurLoc" />
+
+    <TextView
+        android:text="Joueur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="531dp"
+        android:layout_y="367dp"
+        android:id="@+id/JoueurLocTxt"
+        android:textSize="24sp"
+        android:textColor="#000000" />
+
+    <EditText
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="AssCoachLoc_input"
+        android:ems="10"
+        android:layout_x="551dp"
+        android:layout_y="310dp"
+        android:id="@+id/AssCoachLoc_input"
+        tools:text="Nom" />
+
+    <EditText
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="JoueurNomLoc"
+        android:ems="10"
+        android:layout_x="551dp"
+        android:layout_y="405dp"
+        android:id="@+id/JoueurNomLoc"
+        tools:text="Nom" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_x="1080dp"
+        android:layout_y="405dp"
+        android:id="@+id/NumeroJoueurVis" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_x="1160dp"
+        android:layout_y="405dp"
+        android:id="@+id/PositionJoueurVis" />
+
+    <EditText
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="JoueurNomVis"
+        android:ems="10"
+        android:layout_x="920dp"
+        android:layout_y="405dp"
+        android:id="@+id/JoueurNomVis"
+        tools:text="Nom" />
+
+    <Button
+        android:text="AjouterLoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="551dp"
+        android:layout_y="454dp"
+        android:id="@+id/AjouterLoc"
+        tools:text="Ajouter" />
+
+    <Button
+        android:text="AjouterVis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="920dp"
+        android:layout_y="454dp"
+        android:id="@+id/AjouterVis"
+        tools:text="Ajouter" />
+
+    <ListView
+        android:layout_width="304dp"
+        android:layout_height="123dp"
+        android:layout_x="551dp"
+        android:layout_y="508dp"
+        android:id="@+id/ViewJoueurLoc" />
+
+    <ListView
+        android:layout_width="304dp"
+        android:layout_height="123dp"
+        android:layout_x="920dp"
+        android:layout_y="508dp"
+        android:id="@+id/ViewJoueurVis" />
+
 </AbsoluteLayout>
