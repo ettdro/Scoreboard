@@ -91,25 +91,6 @@ public class MainActivity extends AppCompatActivity {
         this.timerText = (TextView) findViewById(R.id.timerText);
         this.periodeText = (TextView) findViewById(R.id.periodeText);
 
-
-        ArrayList<String> listeJoueurs = dbHelper.getAllJoueurs();
-        Spinner spinnerPenaltyV = (Spinner)findViewById(R.id.spinnerPenaltyV);
-
-        // Mettre les données que l'utilisateur va entrer manuellement dans les paramètres.
-//        final CountDownTimer timer = new CountDownTimer(time, 1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                time = millisUntilFinished;
-//                timerText.setText("0" + time / 60000 + " : " + time / 1000 % 60 );
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                timerText.setText("00:00");
-//
-//            }
-//        };
-
         final Button buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -141,11 +122,13 @@ public class MainActivity extends AppCompatActivity {
         final Button buttonReset = (Button) findViewById(R.id.buttonReset);
         buttonReset.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                timerHasStarted = false;
-                isPaused = false;
-                time = 0;
-                timer.cancel();
-                timerText.setText(String.valueOf("00:00"));
+                if (timerHasStarted) {
+                    timerHasStarted = false;
+                    isPaused = false;
+                    time = 0;
+                    timer.cancel();
+                    timerText.setText(String.valueOf("00:00"));
+                }
             }
         });
 
@@ -182,44 +165,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //timer.start();
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.main_layout, txtView.getId(), listeJoueurs);
-        //spinnerPenaltyV.setAdapter(adapter);
+        final ArrayList<String> listeJoueursVString = dbHelper.getJoueursVisiteurs();
+        final ArrayList<String> listeJoueursLString = dbHelper.getJoueursLocal();
+        Spinner spinnerPenaltyV = (Spinner)findViewById(R.id.spinnerPenaltyV);
+        Spinner spinnerPenaltyL = (Spinner)findViewById(R.id.spinnerPenaltyL);
 
-        //JoueurCRUD db = new JoueurCRUD(this);
+        ArrayAdapter<String> adapterV = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursVString);
+        adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPenaltyV.setAdapter(adapterV);
+
+        ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursLString);
+        adapterL.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPenaltyL.setAdapter(adapterL);
+
+        JoueurCRUD db = new JoueurCRUD(this);
 
 
-        //Joueur joueurV = new Joueur();
-        /*
+        Joueur joueurV = new Joueur();
+
         Joueur joueurL = new Joueur();
         this.listeJoueursVisiteur = new ArrayList<Joueur>();
         this.listeJoueursLocal = new ArrayList<Joueur>();
 
-        Popup popup = new Popup();
-        this.scoreV = popup.getScoreV();
-        */
-
-
-        /*
         joueurV.nom = this.nomV;
         joueurV.numero = this.numeroV;
         joueurV.position = this.positionV;
         joueurV.equipe = this.equipeV;
 
         db.insert(joueurV);
-        */
 
-
-
-        /*
         joueurL.nom = this.nomL;
         joueurL.numero = this.numeroL;
         joueurL.position = this.positionL;
         joueurL.equipe = this.equipeL;
-        */
 
-
-        /*
         db.deleteAll();
         for (int i = 0; i < 23; i++) {
             db.insert(joueurV);
@@ -230,16 +209,71 @@ public class MainActivity extends AppCompatActivity {
             db.insert(joueurL);
             this.listeJoueursLocal.add(joueurL);
         }
-        */
 
         // Score visiteurs
         scoreVLabel = (TextView) findViewById(R.id.scoreVisiteur);
         final Button scoreVUpButton = (Button) findViewById(R.id.buttonScoreUpV);
         scoreVUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                scoreV++;
-                scoreVLabel.setText(String.valueOf(scoreV));
-                //startActivity(new Intent(MainActivity.this, Popup.class));
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("BUT!");
+                final Spinner spinnerBut = new Spinner(MainActivity.this);
+                ArrayAdapter<String> adapterV = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, listeJoueursVString);
+                adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerBut.setAdapter(adapterV);
+                alert.setView(spinnerBut);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        InputFilter[] FilterArray = new InputFilter[1];
+                        FilterArray[0] = new InputFilter.LengthFilter(2);
+                        alert.setTitle("PASSE 1");
+                        final Spinner spinnerPasse1 = new Spinner(MainActivity.this);
+                        ArrayAdapter<String> adapterV = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, listeJoueursVString);
+                        adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerPasse1.setAdapter(adapterV);
+                        alert.setView(spinnerPasse1);
+                        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                                InputFilter[] FilterArray = new InputFilter[1];
+                                FilterArray[0] = new InputFilter.LengthFilter(2);
+                                alert.setTitle("PASSE 2");
+                                final Spinner spinnerPasse2 = new Spinner(MainActivity.this);
+                                ArrayAdapter<String> adapterV = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, listeJoueursVString);
+                                adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spinnerPasse2.setAdapter(adapterV);
+                                alert.setView(spinnerPasse2);
+                                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        scoreV++;
+                                        scoreVLabel.setText(String.valueOf(scoreV));
+                                    }
+                                });
+                                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                                    }
+                                });
+                                alert.show();
+                            }
+                        });
+                        alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }
+                        });
+                        alert.show();
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                });
+                alert.show();
             }
         });
 
@@ -368,27 +402,5 @@ public class MainActivity extends AppCompatActivity {
     private void timerResume() {
         timer = null;
         timerStart(milliLeft);
-    }
-
-    /**
-     * Function to load the spinner data from SQLite database
-     */
-    private void loadSpinnerData() {
-        JoueurCRUD db = new JoueurCRUD(getApplicationContext());
-
-        List<String> joueursV = db.getJoueurListe(0);
-        List<String> joueursL = db.getJoueurListe(1);
-
-        ArrayAdapter<String> dataAdapterV = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, joueursV);
-
-        ArrayAdapter<String> dataAdapterL = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, joueursL);
-
-        dataAdapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dataAdapterL.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //this.spinnerPenaltyV.setAdapter(dataAdapterV);
-        //this.spinnerPenaltyL.setAdapter(dataAdapterL);
     }
 }

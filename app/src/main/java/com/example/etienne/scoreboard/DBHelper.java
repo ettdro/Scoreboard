@@ -88,4 +88,52 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return list;
     }
+
+    public ArrayList<String> getJoueursVisiteurs() {
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 0;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            if(cursor.getCount()>0) {
+                while(cursor.moveToNext()) {
+                    String nom = cursor.getString(cursor.getColumnIndex("nom"));
+                    list.add(nom);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return list;
+    }
+
+    public ArrayList<String> getJoueursLocal() {
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 1;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            if(cursor.getCount()>0) {
+                while(cursor.moveToNext()) {
+                    String nom = cursor.getString(cursor.getColumnIndex("nom"));
+                    list.add(nom);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return list;
+    }
 }
