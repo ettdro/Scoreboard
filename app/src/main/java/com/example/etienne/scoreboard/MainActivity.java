@@ -115,7 +115,9 @@ public class MainActivity extends AppCompatActivity {
         final Button buttonPause = (Button) findViewById(R.id.buttonPause);
         buttonPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                timerPause();
+                if (timerHasStarted) {
+                    timerPause();
+                }
             }
         });
 
