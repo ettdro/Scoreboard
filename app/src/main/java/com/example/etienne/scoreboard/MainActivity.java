@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private String positionL = "AG";
     private int equipeL = 1;
 
-    //private Spinner spinnerPenaltyV;
-    //private Spinner spinnerPenaltyL;
-
     private int tirsVisiteurs = 0;
     private int tirsLocaux = 0;
 
@@ -70,12 +68,32 @@ public class MainActivity extends AppCompatActivity {
     // TIMER
     private boolean isPaused;
     private long time;
-    CountDownTimer timer;
+    private long timeP1;
+    private long timeP2;
+    private long timeP3;
+    private long timeP4;
+    private CountDownTimer timer;
+    private CountDownTimer timerP1;
     private long milliLeft;
+    private long milliLeftP1;
+    private long milliLeftP2;
+    private long milliLeftP3;
+    private long milliLeftP4;
     private long min;
     private long sec;
     TextView timerText;
     private boolean timerHasStarted;
+    private boolean penaliteHasStarted;
+
+    TextView penalite1;
+    TextView penalite2;
+    TextView penalite3;
+    TextView penalite4;
+
+    TextView timerPenalite1;
+    TextView timerPenalite2;
+    TextView timerPenalite3;
+    TextView timerPenalite4;
 
 
     @Override
@@ -87,9 +105,19 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertJoueur(nomV);
         dbHelper.insertJoueur(nomL);
 
-        //TextView txtView = (TextView) findViewById(R.id.txtView);
         this.timerText = (TextView) findViewById(R.id.timerText);
         this.periodeText = (TextView) findViewById(R.id.periodeText);
+
+        this.penalite1 = (TextView) findViewById(R.id.penalite1);
+        this.penalite2 = (TextView) findViewById(R.id.penalite2);
+        this.penalite3 = (TextView) findViewById(R.id.penalite3);
+        this.penalite4 = (TextView) findViewById(R.id.penalite4);
+
+        this.timerPenalite1 = (TextView) findViewById(R.id.timerPenalite1);
+        this.timerPenalite2 = (TextView) findViewById(R.id.timerPenalite2);
+        this.timerPenalite3 = (TextView) findViewById(R.id.timerPenalite3);
+        this.timerPenalite4 = (TextView) findViewById(R.id.timerPenalite4);
+
 
         final Button buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     isPaused = false;
                     timerResume();
                     timer.start();
+                    timerP1.start();
                 } else {
                     if (timerHasStarted) {
                     } else {
@@ -106,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
                             timerHasStarted = true;
                             timerStart(time * 60000);
                             timer.start();
+
+                            penaliteHasStarted = true;
+                            timerStartP1(timeP1 * 60000);
+                            timerP1.start();
                         }
                     }
                 }
@@ -126,10 +159,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (timerHasStarted) {
                     timerHasStarted = false;
+                    penaliteHasStarted = false;
                     isPaused = false;
                     time = 0;
+                    timeP1 = 0;
                     timer.cancel();
+                    timerP1.cancel();
+
                     timerText.setText(String.valueOf("00:00"));
+                    timerPenalite1.setText(String.valueOf("00:00"));
                 }
             }
         });
@@ -167,25 +205,198 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button buttonSetTimerP1 = (Button) findViewById(R.id.setTimerPenalite1);
+        buttonSetTimerP1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("Entrez le temps");
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input.setRawInputType(Configuration.KEYBOARD_12KEY);
+                input.setFilters(FilterArray);
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if (!(input.getText().toString().isEmpty())) {
+                            timeP1 = Long.valueOf(input.getText().toString());
+                            if (timeP1 < 10) {
+                                timerPenalite1.setText("0" + String.valueOf(timeP1) + ":00");
+                            } else {
+                                timerPenalite1.setText(String.valueOf(timeP1 + ":00"));
+                            }
+                        }
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //Put actions for CANCEL button here, or leave in blank
+                    }
+                });
+                alert.show();
+            }
+        });
+
+        final Button buttonSetTimerP2 = (Button) findViewById(R.id.setTimerPenalite2);
+        buttonSetTimerP2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("Entrez le temps");
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input.setRawInputType(Configuration.KEYBOARD_12KEY);
+                input.setFilters(FilterArray);
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if (!(input.getText().toString().isEmpty())) {
+                            timerPenalite2.setText("0" + String.valueOf(Long.valueOf(input.getText().toString())) + ":00");
+                        }
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //Put actions for CANCEL button here, or leave in blank
+                    }
+                });
+                alert.show();
+            }
+        });
+
+        final Button buttonSetTimerP3 = (Button) findViewById(R.id.setTimerPenalite3);
+        buttonSetTimerP3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("Entrez le temps");
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input.setRawInputType(Configuration.KEYBOARD_12KEY);
+                input.setFilters(FilterArray);
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if (!(input.getText().toString().isEmpty())) {
+                            timerPenalite3.setText("0" + String.valueOf(Long.valueOf(input.getText().toString())) + ":00");
+                        }
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //Put actions for CANCEL button here, or leave in blank
+                    }
+                });
+                alert.show();
+            }
+        });
+
+        final Button buttonSetTimerP4 = (Button) findViewById(R.id.setTimerPenalite4);
+        buttonSetTimerP4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("Entrez le temps");
+                final EditText input = new EditText(MainActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                input.setRawInputType(Configuration.KEYBOARD_12KEY);
+                input.setFilters(FilterArray);
+                alert.setView(input);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if (!(input.getText().toString().isEmpty())) {
+                            timerPenalite4.setText("0" + String.valueOf(Long.valueOf(input.getText().toString())) + ":00");
+                        }
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //Put actions for CANCEL button here, or leave in blank
+                    }
+                });
+                alert.show();
+            }
+        });
+
         final ArrayList<String> listeJoueursVString = dbHelper.getJoueursVisiteurs();
         final ArrayList<String> listeJoueursLString = dbHelper.getJoueursLocal();
-        Spinner spinnerPenaltyV = (Spinner)findViewById(R.id.spinnerPenaltyV);
-        Spinner spinnerPenaltyL = (Spinner)findViewById(R.id.spinnerPenaltyL);
+        Spinner spinnerPenaltyV1 = (Spinner)findViewById(R.id.spinnerPenaltyV1);
+        Spinner spinnerPenaltyV2 = (Spinner)findViewById(R.id.spinnerPenaltyV2);
+        Spinner spinnerPenaltyL1 = (Spinner)findViewById(R.id.spinnerPenaltyL1);
+        Spinner spinnerPenaltyL2 = (Spinner)findViewById(R.id.spinnerPenaltyL2);
 
-        ArrayAdapter<String> adapterV = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursVString);
-        adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPenaltyV.setAdapter(adapterV);
+        ArrayAdapter<String> adapterV1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursVString);
+        adapterV1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPenaltyV1.setAdapter(adapterV1);
+
+        ArrayAdapter<String> adapterV2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursVString);
+        adapterV2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPenaltyV2.setAdapter(adapterV2);
+
+        ArrayAdapter<String> adapterL1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursLString);
+        adapterL1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPenaltyL1.setAdapter(adapterL1);
 
         ArrayAdapter<String> adapterL = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursLString);
         adapterL.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPenaltyL.setAdapter(adapterL);
+        spinnerPenaltyL2.setAdapter(adapterL);
+
+        spinnerPenaltyV1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                penalite1.setText(String.valueOf(listeJoueursVisiteur.get(i).numero));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerPenaltyV2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                penalite2.setText(String.valueOf(listeJoueursVisiteur.get(i).numero));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerPenaltyL1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                penalite3.setText(String.valueOf(listeJoueursLocal.get(i).numero));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerPenaltyL2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                penalite4.setText(String.valueOf(listeJoueursLocal.get(i).numero));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         JoueurCRUD db = new JoueurCRUD(this);
-
-
         Joueur joueurV = new Joueur();
-
         Joueur joueurL = new Joueur();
+
         this.listeJoueursVisiteur = new ArrayList<Joueur>();
         this.listeJoueursLocal = new ArrayList<Joueur>();
 
@@ -393,16 +604,55 @@ public class MainActivity extends AppCompatActivity {
                 periodeText.setText(String.valueOf(periode));
             }
         };
+    }
 
+    public void timerStartP1(long timeLengthMilli) {
+        timerP1 = new CountDownTimer(timeLengthMilli ,1000) {
+            @Override
+            public void onTick(long milliTillFinish) {
+                milliLeftP1 = milliTillFinish;
+                min = (milliTillFinish / (1000 * 60));
+                sec = ((milliTillFinish / 1000) - min * 60);
+                if (min < 10) {
+                    timerPenalite1.setText("0" + Long.toString(min) + ":" + "0" + Long.toString(sec));
+                } else {
+                    timerPenalite1.setText(Long.toString(min) + ":" + "0" + Long.toString(sec));
+                }
+                if (sec < 10) {
+                    timerPenalite1.setText(Long.toString(min) + ":" + "0" + Long.toString(sec));
+                } else {
+                    timerPenalite1.setText(Long.toString(min) + ":" + Long.toString(sec));
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                if (timeP1 < 10) {
+                    timerPenalite1.setText("00:00");
+                } else {
+                    timerPenalite1.setText("00:00");
+                }
+                timerHasStarted = false;
+                penalite1.setText(String.valueOf("00"));
+                timeP1 = 0;
+            }
+        };
     }
 
     public void timerPause() {
         isPaused = true;
-        timer.cancel();
+        if (timerHasStarted) {
+            timer.cancel();
+        }
+        if (penaliteHasStarted) {
+            timerP1.cancel();
+        }
     }
 
     private void timerResume() {
         timer = null;
+        timerP1 = null;
         timerStart(milliLeft);
+        timerStartP1(milliLeftP1);
     }
 }

@@ -4,36 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:layout_width="479dp"
-        android:layout_x="26dp"
-        android:layout_y="548dp"
-        android:id="@+id/listViewPenaltyV"
-        android:layout_height="200dp" />
-
-    <Spinner
-        android:layout_width="282dp"
-        android:layout_height="wrap_content"
-        android:layout_x="24dp"
-        android:layout_y="490dp"
-        android:id="@+id/spinnerPenaltyV"
-        style="@android:style/Widget.Spinner" />
-
-    <Spinner
-        android:layout_width="282dp"
-        android:layout_height="wrap_content"
-        android:layout_x="979dp"
-        android:layout_y="490dp"
-        android:id="@+id/spinnerPenaltyL"
-        style="@android:style/Widget.Spinner" />
-
-    <ListView
-        android:layout_width="479dp"
-        android:layout_x="778dp"
-        android:layout_y="548dp"
-        android:id="@+id/listViewPenaltyL"
-        android:layout_height="200dp" />
-
     <Button
         android:text="Start"
         android:layout_width="227dp"
@@ -235,14 +205,6 @@
         android:id="@+id/textView"
         android:textSize="36sp" />
 
-    <Button
-        android:layout_width="56dp"
-        android:layout_height="wrap_content"
-        android:layout_x="787dp"
-        android:layout_y="52dp"
-        android:drawableStart="@android:drawable/ic_dialog_dialer"
-        android:id="@+id/buttonSetTimer" />
-
     <TextView
         android:text=""
         android:layout_width="wrap_content"
@@ -261,5 +223,143 @@
         android:textSize="72dp"
         android:layout_x="549dp"
         android:layout_y="52dp" />
+
+    <Spinner
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_x="33dp"
+        android:layout_y="499dp"
+        android:id="@+id/spinnerPenaltyV1"
+        style="@android:style/Widget.Spinner" />
+
+    <Spinner
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_x="30dp"
+        android:layout_y="616dp"
+        android:id="@+id/spinnerPenaltyV2"
+        style="@android:style/Widget.Spinner" />
+
+    <Spinner
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_x="978dp"
+        android:layout_y="489dp"
+        android:id="@+id/spinnerPenaltyL1"
+        style="@android:style/Widget.Spinner" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1012dp"
+        android:layout_y="578dp"
+        android:id="@+id/penalite3" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1145dp"
+        android:layout_y="578dp"
+        android:id="@+id/timerPenalite3" />
+
+    <Spinner
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_x="974dp"
+        android:layout_y="611dp"
+        android:id="@+id/spinnerPenaltyL2"
+        style="@android:style/Widget.Spinner" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1021dp"
+        android:layout_y="686dp"
+        android:id="@+id/penalite4" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1153dp"
+        android:layout_y="686dp"
+        android:id="@+id/timerPenalite4" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_x="792dp"
+        android:layout_y="54dp"
+        android:drawableStart="@android:drawable/ic_dialog_dialer"
+        android:id="@+id/buttonSetTimer" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_x="848dp"
+        android:layout_y="562dp"
+        android:drawableStart="@android:drawable/ic_dialog_dialer"
+        android:id="@+id/setTimerPenalite3" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_x="850dp"
+        android:layout_y="662dp"
+        android:drawableStart="@android:drawable/ic_dialog_dialer"
+        android:id="@+id/setTimerPenalite4" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_x="364dp"
+        android:layout_y="560dp"
+        android:drawableStart="@android:drawable/ic_dialog_dialer"
+        android:id="@+id/setTimerPenalite1" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_x="368dp"
+        android:layout_y="650dp"
+        android:drawableStart="@android:drawable/ic_dialog_dialer"
+        android:id="@+id/setTimerPenalite2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="84dp"
+        android:layout_y="552dp"
+        android:id="@+id/penalite1"
+        android:textSize="40sp" />
+
+    <TextView
+        android:text="00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="214dp"
+        android:layout_y="556dp"
+        android:id="@+id/timerPenalite1"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="76dp"
+        android:layout_y="668dp"
+        android:id="@+id/penalite2"
+        android:textSize="40sp" />
+
+    <TextView
+        android:text="00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="216dp"
+        android:layout_y="674dp"
+        android:id="@+id/timerPenalite2"
+        android:textSize="40sp" />
 
 </AbsoluteLayout>
