@@ -95,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
     TextView timerPenalite3;
     TextView timerPenalite4;
 
+    Button setTimerPenalite1;
+    Button setTimerPenalite2;
+    Button setTimerPenalite3;
+    Button setTimerPenalite4;
+    Button buttonSetTimer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +124,14 @@ public class MainActivity extends AppCompatActivity {
         this.timerPenalite3 = (TextView) findViewById(R.id.timerPenalite3);
         this.timerPenalite4 = (TextView) findViewById(R.id.timerPenalite4);
 
+        this.buttonSetTimer = (Button) findViewById(R.id.buttonSetTimer);
+
+        this.setTimerPenalite1 = (Button) findViewById(R.id.setTimerPenalite1);
+        this.setTimerPenalite2 = (Button) findViewById(R.id.setTimerPenalite2);
+        this.setTimerPenalite3 = (Button) findViewById(R.id.setTimerPenalite3);
+        this.setTimerPenalite4 = (Button) findViewById(R.id.setTimerPenalite4);
+
+
 
         final Button buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
                     isPaused = false;
                     timerResume();
                     timer.start();
+                    
+                    timerStartP1(timeP1 * 60000);
                     timerP1.start();
                 } else {
                     if (timerHasStarted) {
@@ -142,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+                buttonSetTimer.setEnabled(false);
+                setTimerPenalite1.setEnabled(false);
             }
         });
 
@@ -149,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
         buttonPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (timerHasStarted) {
+                    buttonSetTimer.setEnabled(true);
+                    setTimerPenalite1.setEnabled(true);
                     timerPause();
                 }
             }
@@ -169,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
                     timerText.setText(String.valueOf("00:00"));
                     timerPenalite1.setText(String.valueOf("00:00"));
                 }
+                setTimerPenalite1.setEnabled(true);
             }
         });
 
-        final Button buttonSetTimer = (Button) findViewById(R.id.buttonSetTimer);
-        buttonSetTimer.setOnClickListener(new View.OnClickListener() {
+        this.buttonSetTimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -205,8 +225,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button buttonSetTimerP1 = (Button) findViewById(R.id.setTimerPenalite1);
-        buttonSetTimerP1.setOnClickListener(new View.OnClickListener() {
+
+        this.setTimerPenalite1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -238,8 +258,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button buttonSetTimerP2 = (Button) findViewById(R.id.setTimerPenalite2);
-        buttonSetTimerP2.setOnClickListener(new View.OnClickListener() {
+        this.setTimerPenalite2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -266,8 +285,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button buttonSetTimerP3 = (Button) findViewById(R.id.setTimerPenalite3);
-        buttonSetTimerP3.setOnClickListener(new View.OnClickListener() {
+        this.setTimerPenalite3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -294,8 +312,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button buttonSetTimerP4 = (Button) findViewById(R.id.setTimerPenalite4);
-        buttonSetTimerP4.setOnClickListener(new View.OnClickListener() {
+        this.setTimerPenalite4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -600,6 +617,10 @@ public class MainActivity extends AppCompatActivity {
                     timerText.setText(String.valueOf(time + ":00"));
                 }
                 timerHasStarted = false;
+                penaliteHasStarted = false;
+                timer.cancel();
+                timeP1 = milliLeftP1 / 60000;
+                timerP1.cancel();
                 periode++;
                 periodeText.setText(String.valueOf(periode));
             }
@@ -633,6 +654,7 @@ public class MainActivity extends AppCompatActivity {
                     timerPenalite1.setText("00:00");
                 }
                 timerHasStarted = false;
+                timerPenalite1.setText("00:00");
                 penalite1.setText(String.valueOf("00"));
                 timeP1 = 0;
             }
