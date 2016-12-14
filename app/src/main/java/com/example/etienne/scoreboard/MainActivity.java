@@ -36,19 +36,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Joueur> listeJoueursVisiteur;
-    private List<Joueur> listeJoueursLocal;
-
-    private String nomV = "Alex Galchenyuk";
-    private String numeroV = "27";
-    private String positionV = "C";
-    private int equipeV = 0;
-
-    private String nomL = "Max Pacioretty";
-    private String numeroL = "67";
-    private String positionL = "AG";
-    private int equipeL = 1;
-
     private int tirsVisiteurs = 0;
     private int tirsLocaux = 0;
 
@@ -106,10 +93,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
-        DBHelper dbHelper = new DBHelper(this);
 
-        dbHelper.insertJoueur(nomV);
-        dbHelper.insertJoueur(nomL);
+        final SeederJoueurs seeder = new SeederJoueurs();
+        DBHelper dbHelper = new DBHelper(this);
+        dbHelper.deleteAll();
+        seeder.seed(dbHelper);
 
         this.timerText = (TextView) findViewById(R.id.timerText);
         this.periodeText = (TextView) findViewById(R.id.periodeText);
@@ -365,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerPenaltyV1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                penalite1.setText(String.valueOf(listeJoueursVisiteur.get(i).numero));
+                penalite1.setText(String.valueOf(seeder.listeJoueursVisiteur.get(i).numero));
             }
 
             @Override
@@ -377,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerPenaltyV2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                penalite2.setText(String.valueOf(listeJoueursVisiteur.get(i).numero));
+                penalite2.setText(String.valueOf(seeder.listeJoueursVisiteur.get(i).numero));
             }
 
             @Override
@@ -389,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerPenaltyL1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                penalite3.setText(String.valueOf(listeJoueursLocal.get(i).numero));
+                penalite3.setText(String.valueOf(seeder.listeJoueursLocal.get(i).numero));
             }
 
             @Override
@@ -401,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerPenaltyL2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                penalite4.setText(String.valueOf(listeJoueursLocal.get(i).numero));
+                penalite4.setText(String.valueOf(seeder.listeJoueursLocal.get(i).numero));
             }
 
             @Override
@@ -410,35 +398,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        JoueurCRUD db = new JoueurCRUD(this);
-        Joueur joueurV = new Joueur();
-        Joueur joueurL = new Joueur();
-
-        this.listeJoueursVisiteur = new ArrayList<Joueur>();
-        this.listeJoueursLocal = new ArrayList<Joueur>();
-
-        joueurV.nom = this.nomV;
-        joueurV.numero = this.numeroV;
-        joueurV.position = this.positionV;
-        joueurV.equipe = this.equipeV;
-
-        db.insert(joueurV);
-
-        joueurL.nom = this.nomL;
-        joueurL.numero = this.numeroL;
-        joueurL.position = this.positionL;
-        joueurL.equipe = this.equipeL;
-
-        db.deleteAll();
-        for (int i = 0; i < 23; i++) {
-            db.insert(joueurV);
-            this.listeJoueursVisiteur.add(joueurV);
-        }
-
-        for (int i = 0; i < 23; i++) {
-            db.insert(joueurL);
-            this.listeJoueursLocal.add(joueurL);
-        }
+//        JoueurCRUD db = new JoueurCRUD(this);
+//        Joueur joueurV = new Joueur();
+//        Joueur joueurL = new Joueur();
+//
+//        this.listeJoueursVisiteur = new ArrayList<Joueur>();
+//        this.listeJoueursLocal = new ArrayList<Joueur>();
+//
+//        joueurV.nom = this.nomV;
+//        joueurV.numero = this.numeroV;
+//        joueurV.position = this.positionV;
+//        joueurV.equipe = this.equipeV;
+//
+//        db.insert(joueurV);
+//
+//        joueurL.nom = this.nomL;
+//        joueurL.numero = this.numeroL;
+//        joueurL.position = this.positionL;
+//        joueurL.equipe = this.equipeL;
+//
+//        db.deleteAll();
+//        for (int i = 0; i < 23; i++) {
+//            db.insert(joueurV);
+//            this.listeJoueursVisiteur.add(joueurV);
+//        }
+//
+//        for (int i = 0; i < 23; i++) {
+//            db.insert(joueurL);
+//            this.listeJoueursLocal.add(joueurL);
+//        }
 
         // Score visiteurs
         scoreVLabel = (TextView) findViewById(R.id.scoreVisiteur);

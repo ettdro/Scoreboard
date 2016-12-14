@@ -22,5 +22,9 @@ public class Joueur {
     public String numero;
     public int equipe;
 
+    public void Joueur(){
+
+    }
+
 
 }

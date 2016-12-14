@@ -48,13 +48,24 @@ public class DBHelper extends SQLiteOpenHelper{
 
     }
 
-    public void insertJoueur(String nom) {
+    public void deleteAll() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        // It's a good practice to use parameter ?, instead of concatenate string
+        db.delete(Joueur.TABLE, null, null);
+        db.close(); // Closing database connection
+    }
+
+    public void insertJoueur(Joueur joueur) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
         ContentValues values;
         try {
             values = new ContentValues();
-            values.put("nom", nom);
+            values.put("nom", joueur.nom);
+            values.put("position", joueur.position);
+            values.put("numero", joueur.numero);
+            values.put("equipe", joueur.equipe);
             db.insert(Joueur.TABLE, null, values);
             db.setTransactionSuccessful();
         } catch (Exception e) {e.printStackTrace();}
@@ -94,7 +105,7 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         db.beginTransaction();
         try {
-            String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 0;
+            String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 1;
             Cursor cursor = db.rawQuery(selectQuery,null);
             if(cursor.getCount()>0) {
                 while(cursor.moveToNext()) {
