@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
-        final SeederJoueurs seeder = new SeederJoueurs();
+        final Seeder seeder = new Seeder();
         DBHelper dbHelper = new DBHelper(this);
         dbHelper.deleteAll();
         seeder.seed(dbHelper);
