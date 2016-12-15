@@ -36,12 +36,18 @@ public class DBHelper extends SQLiteOpenHelper{
 
         db.execSQL(CREATE_TABLE_JOUEUR);
 
+        String CREATE_TABLE_OFFICIEL = "CREATE TABLE " + Officiel.TABLE + "("
+                + Officiel.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + Officiel.KEY_type + " TEXT ,"
+                + Officiel.KEY_nomComplet + " TEXT );";
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed, all data will be gone!!!
         db.execSQL("DROP TABLE IF EXISTS " + Joueur.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Officiel.TABLE);
 
         // Create tables again
         onCreate(db);
@@ -53,6 +59,7 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         // It's a good practice to use parameter ?, instead of concatenate string
         db.delete(Joueur.TABLE, null, null);
+        db.delete(Officiel.TABLE, null, null);
         db.close(); // Closing database connection
     }
 
@@ -73,8 +80,26 @@ public class DBHelper extends SQLiteOpenHelper{
             db.endTransaction();
             db.close();
         }
-
     }
+
+    public void insertOfficiel(Officiel officiel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        ContentValues values;
+        try {
+            values = new ContentValues();
+            values.put("type", officiel.type);
+            values.put("nomComplet", officiel.nomComplet);
+            db.insert(Officiel.TABLE, null, values);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
 
     public ArrayList<String> getAllJoueurs() {
         ArrayList<String> list = new ArrayList<>();
@@ -130,6 +155,30 @@ public class DBHelper extends SQLiteOpenHelper{
         db.beginTransaction();
         try {
             String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 1;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            if(cursor.getCount()>0) {
+                while(cursor.moveToNext()) {
+                    String nom = cursor.getString(cursor.getColumnIndex("nom"));
+                    list.add(nom);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return list;
+    }
+
+    public ArrayList<String> getAllOfficiels() {
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + Officiel.TABLE;
             Cursor cursor = db.rawQuery(selectQuery,null);
             if(cursor.getCount()>0) {
                 while(cursor.moveToNext()) {

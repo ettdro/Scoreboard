@@ -9,11 +9,11 @@ public class Joueur {
     public static final String TABLE = "Joueur";
 
     // Labels Table Columns names
-    public static final String KEY_ID = "id";
-    public static final String KEY_nom = "nom";
-    public static final String KEY_position = "position";
-    public static final String KEY_numero = "numero";
-    public static final String KEY_equipe = "equipe";
+    public static final String KEY_ID = "Id";
+    public static final String KEY_nom = "Nom";
+    public static final String KEY_position = "Position";
+    public static final String KEY_numero = "Numero";
+    public static final String KEY_equipe = "Equipe";
 
     // property help us to keep data
     public int joueur_ID;
