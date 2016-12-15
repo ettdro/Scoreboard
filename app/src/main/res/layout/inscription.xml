@@ -167,17 +167,6 @@
         android:id="@+id/JugeB1_input"
         tools:text="Nom" />
 
-    <EditText
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Nom"
-        android:ems="10"
-        android:layout_x="45dp"
-        android:layout_y="251dp"
-        android:id="@+id/Arbitre2_input"
-        tools:text="Nom" />
-
     <TextView
         android:text="Local"
         android:layout_width="wrap_content"
@@ -237,7 +226,7 @@
         android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="CoachVis_input"
+        android:text="Nom"
         android:ems="10"
         android:layout_x="920dp"
         android:layout_y="220dp"
@@ -248,7 +237,7 @@
         android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="CoachLoc_input"
+        android:text="Nom"
         android:ems="10"
         android:layout_x="551dp"
         android:layout_y="220dp"
@@ -413,5 +402,16 @@
         android:layout_y="454dp"
         android:id="@+id/AjouterLoc"
         tools:text="Ajouter" />
+
+    <EditText
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Nom"
+        android:ems="10"
+        android:layout_x="44dp"
+        android:layout_y="251dp"
+        android:id="@+id/Arbitre2_input"
+        tools:text="Nom" />
 
 </AbsoluteLayout>
