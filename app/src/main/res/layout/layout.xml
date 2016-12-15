@@ -249,20 +249,12 @@
         style="@android:style/Widget.Spinner" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1012dp"
-        android:layout_y="578dp"
-        android:id="@+id/penalite3" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="1145dp"
-        android:layout_y="578dp"
-        android:id="@+id/timerPenalite3" />
+        android:layout_y="556dp"
+        android:id="@+id/penalite3"
+        android:textSize="40sp" />
 
     <Spinner
         android:layout_width="282dp"
@@ -273,20 +265,12 @@
         style="@android:style/Widget.Spinner" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="1021dp"
-        android:layout_y="686dp"
-        android:id="@+id/penalite4" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="1153dp"
-        android:layout_y="686dp"
-        android:id="@+id/timerPenalite4" />
+        android:layout_x="1012dp"
+        android:layout_y="674dp"
+        android:id="@+id/penalite4"
+        android:textSize="40sp" />
 
     <Button
         android:layout_width="56dp"
@@ -300,7 +284,7 @@
         android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_x="848dp"
-        android:layout_y="562dp"
+        android:layout_y="560dp"
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/setTimerPenalite3" />
 
@@ -308,7 +292,7 @@
         android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_x="850dp"
-        android:layout_y="662dp"
+        android:layout_y="650dp"
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/setTimerPenalite4" />
 
@@ -331,8 +315,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="84dp"
-        android:layout_y="552dp"
+        android:layout_x="76dp"
+        android:layout_y="556dp"
         android:id="@+id/penalite1"
         android:textSize="40sp" />
 
@@ -340,7 +324,7 @@
         android:text="00:00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="214dp"
+        android:layout_x="216dp"
         android:layout_y="556dp"
         android:id="@+id/timerPenalite1"
         android:textSize="40sp" />
@@ -349,7 +333,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="76dp"
-        android:layout_y="668dp"
+        android:layout_y="674dp"
         android:id="@+id/penalite2"
         android:textSize="40sp" />
 
@@ -363,12 +347,30 @@
         android:textSize="40sp" />
 
     <Button
-        android:text="Officiel"
+        android:text="Officiels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="605dp"
         android:layout_y="435dp"
         android:id="@+id/buttonListerOfficiels"
-        tools:text="Officiel" />
+        tools:text="Officiels" />
+
+    <TextView
+        android:text="00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1155dp"
+        android:layout_y="556dp"
+        android:id="@+id/timerPenalite3"
+        android:textSize="40sp" />
+
+    <TextView
+        android:text="00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1155dp"
+        android:layout_y="674dp"
+        android:id="@+id/timerPenalite4"
+        android:textSize="40sp" />
 
 </AbsoluteLayout>
