@@ -362,4 +362,13 @@
         android:id="@+id/timerPenalite2"
         android:textSize="40sp" />
 
+    <Button
+        android:text="Officiel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="605dp"
+        android:layout_y="435dp"
+        android:id="@+id/buttonListerOfficiels"
+        tools:text="Officiel" />
+
 </AbsoluteLayout>
