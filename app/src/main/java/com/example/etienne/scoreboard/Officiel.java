@@ -6,7 +6,7 @@ package com.example.etienne.scoreboard;
 
 public class Officiel {
     // Labels table name
-    public static final String TABLE = "Officiels";
+    public static final String TABLE = "Officiel";
 
     // Labels Table Columns names
     public static final String KEY_ID = "Id";

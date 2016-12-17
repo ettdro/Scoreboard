@@ -59,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
     private long timeP2;
     private long timeP3;
     private long timeP4;
+
     private CountDownTimer timer;
     private CountDownTimer timerP1;
+
     private long milliLeft;
     private long milliLeftP1;
     private long milliLeftP2;
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         dbHelper.deleteAll();
         seeder.seed(dbHelper);
+        seeder.seedArbitre(dbHelper);
 
         this.timerText = (TextView) findViewById(R.id.timerText);
         this.periodeText = (TextView) findViewById(R.id.periodeText);
@@ -128,9 +131,10 @@ public class MainActivity extends AppCompatActivity {
                     isPaused = false;
                     timerResume();
                     timer.start();
-                    
-                    timerStartP1(timeP1 * 60000);
                     timerP1.start();
+
+                    buttonSetTimer.setEnabled(false);
+                    setTimerPenalite1.setEnabled(false);
                 } else {
                     if (timerHasStarted) {
                     } else {
@@ -143,17 +147,19 @@ public class MainActivity extends AppCompatActivity {
                             penaliteHasStarted = true;
                             timerStartP1(timeP1 * 60000);
                             timerP1.start();
+
+                            buttonSetTimer.setEnabled(false);
+                            setTimerPenalite1.setEnabled(false);
                         }
                     }
                 }
-                buttonSetTimer.setEnabled(false);
-                setTimerPenalite1.setEnabled(false);
             }
         });
 
         final Button buttonPause = (Button) findViewById(R.id.buttonPause);
         buttonPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                isPaused = true;
                 if (timerHasStarted) {
                     buttonSetTimer.setEnabled(true);
                     setTimerPenalite1.setEnabled(true);
@@ -177,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     timerText.setText(String.valueOf("00:00"));
                     timerPenalite1.setText(String.valueOf("00:00"));
                 }
+                buttonSetTimer.setEnabled(true);
                 setTimerPenalite1.setEnabled(true);
             }
         });
@@ -260,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (!(input.getText().toString().isEmpty())) {
-                            timerPenalite2.setText("0" + String.valueOf(Long.valueOf(input.getText().toString())) + ":00");
+                            timerPenalite2.setText("0" + String.valueOf(timeP1) + ":00");
                         }
                     }
                 });
@@ -398,36 +405,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        JoueurCRUD db = new JoueurCRUD(this);
-//        Joueur joueurV = new Joueur();
-//        Joueur joueurL = new Joueur();
-//
-//        this.listeJoueursVisiteur = new ArrayList<Joueur>();
-//        this.listeJoueursLocal = new ArrayList<Joueur>();
-//
-//        joueurV.nom = this.nomV;
-//        joueurV.numero = this.numeroV;
-//        joueurV.position = this.positionV;
-//        joueurV.equipe = this.equipeV;
-//
-//        db.insert(joueurV);
-//
-//        joueurL.nom = this.nomL;
-//        joueurL.numero = this.numeroL;
-//        joueurL.position = this.positionL;
-//        joueurL.equipe = this.equipeL;
-//
-//        db.deleteAll();
-//        for (int i = 0; i < 23; i++) {
-//            db.insert(joueurV);
-//            this.listeJoueursVisiteur.add(joueurV);
-//        }
-//
-//        for (int i = 0; i < 23; i++) {
-//            db.insert(joueurL);
-//            this.listeJoueursLocal.add(joueurL);
-//        }
-
         // Score visiteurs
         scoreVLabel = (TextView) findViewById(R.id.scoreVisiteur);
         final Button scoreVUpButton = (Button) findViewById(R.id.buttonScoreUpV);
@@ -504,7 +481,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     scoreVLabel.setText(String.valueOf(0));
                 }
-                //startActivity(new Intent(MainActivity.this, Popup.class));
             }
         });
 
@@ -515,7 +491,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 scoreL++;
                 scoreLLabel.setText(String.valueOf(scoreL));
-                //startActivity(new Intent(MainActivity.this, Popup.class));
             }
         });
 
@@ -528,7 +503,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     scoreLLabel.setText(String.valueOf(0));
                 }
-                //startActivity(new Intent(MainActivity.this, Popup.class));
             }
         });
 
@@ -611,6 +585,10 @@ public class MainActivity extends AppCompatActivity {
                 timerP1.cancel();
                 periode++;
                 periodeText.setText(String.valueOf(periode));
+
+                buttonSetTimer.setEnabled(true);
+                setTimerPenalite1.setEnabled(true);
+
             }
         };
     }

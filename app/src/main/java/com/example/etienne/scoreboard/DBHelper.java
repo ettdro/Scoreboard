@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -34,12 +35,13 @@ public class DBHelper extends SQLiteOpenHelper{
                 + Joueur.KEY_numero + " INTEGER, "
                 + Joueur.KEY_equipe + " INTEGER );";
 
-        db.execSQL(CREATE_TABLE_JOUEUR);
-
         String CREATE_TABLE_OFFICIEL = "CREATE TABLE " + Officiel.TABLE + "("
-                + Officiel.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + Officiel.KEY_type + " TEXT ,"
+                + Officiel.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Officiel.KEY_type + " TEXT,"
                 + Officiel.KEY_nomComplet + " TEXT );";
+
+        db.execSQL(CREATE_TABLE_JOUEUR);
+        //db.execSQL(CREATE_TABLE_OFFICIEL);
 
     }
 
@@ -57,10 +59,9 @@ public class DBHelper extends SQLiteOpenHelper{
     public void deleteAll() {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        // It's a good practice to use parameter ?, instead of concatenate string
         db.delete(Joueur.TABLE, null, null);
-        db.delete(Officiel.TABLE, null, null);
-        db.close(); // Closing database connection
+        //db.delete(Officiel.TABLE, null, null);
+        db.close();
     }
 
     public void insertJoueur(Joueur joueur) {
@@ -154,7 +155,7 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         db.beginTransaction();
         try {
-            String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 1;
+            String selectQuery = "SELECT * FROM " + Joueur.TABLE + " WHERE equipe = " + 0;
             Cursor cursor = db.rawQuery(selectQuery,null);
             if(cursor.getCount()>0) {
                 while(cursor.moveToNext()) {
