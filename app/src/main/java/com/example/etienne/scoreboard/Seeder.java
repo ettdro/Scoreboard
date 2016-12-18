@@ -5,15 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Étienne on 2016-12-14.
+ * Classe pour peupler la base de données.
+ *
+ * @author Étienne Drolet et Nicolas Bisson.
  */
-
 public class Seeder {
-
-    /**
-     * 1 = Local
-     * 2 = Visiteur
-     */
 
     List<String> listeJoueurs;
     List<String> listeOfficiels;
@@ -21,27 +17,38 @@ public class Seeder {
     public List<Joueur> listeJoueursLocal;
     public List<Officiel> listeOfficielsMatch;
 
+    /**
+     * Peuple la base de données dans la table des joueurs.
+     *
+     * 0 = Local
+     * 1 = Visiteur
+     *
+     * @param dbHelper : L'assistant de la base de données.
+     */
     public void seed(DBHelper dbHelper){
         listeJoueurs = new ArrayList<String>();
         listeJoueursVisiteur = new ArrayList<Joueur>();
         listeJoueursLocal = new ArrayList<Joueur>();
 
-        listeJoueurs.addAll(Arrays.asList("", "", "00", "1"));
-        listeJoueurs.addAll(Arrays.asList("Max Pacioretty", "AG", "67", "1"));
-        listeJoueurs.addAll(Arrays.asList("Tomas Plekanec", "C", "14", "1"));
-        listeJoueurs.addAll(Arrays.asList("Alexander Radulov", "AD", "47", "1"));
-        listeJoueurs.addAll(Arrays.asList("Shea Weber", "D", "6", "1"));
-        listeJoueurs.addAll(Arrays.asList("Alexei Emelin", "D", "74", "1"));
-        listeJoueurs.addAll(Arrays.asList("Carey Price", "G", "31", "1"));
-
+        // Joueurs locaux.
         listeJoueurs.addAll(Arrays.asList("", "", "00", "0"));
-        listeJoueurs.addAll(Arrays.asList("Rene Bourque", "AG", "17", "0"));
-        listeJoueurs.addAll(Arrays.asList("Nathan MacKinnon", "C", "29", "0"));
-        listeJoueurs.addAll(Arrays.asList("Jarome Iginla", "AD", "12", "0"));
-        listeJoueurs.addAll(Arrays.asList("Tyson Barrie", "D", "4", "0"));
-        listeJoueurs.addAll(Arrays.asList("Nikita Zadorov", "AD", "16", "0"));
-        listeJoueurs.addAll(Arrays.asList("Calvin Pickard", "G", "31", "0"));
+        listeJoueurs.addAll(Arrays.asList("Max Pacioretty", "AG", "67", "0"));
+        listeJoueurs.addAll(Arrays.asList("Tomas Plekanec", "C", "14", "0"));
+        listeJoueurs.addAll(Arrays.asList("Alexander Radulov", "AD", "47", "0"));
+        listeJoueurs.addAll(Arrays.asList("Shea Weber", "D", "6", "0"));
+        listeJoueurs.addAll(Arrays.asList("Alexei Emelin", "D", "74", "0"));
+        listeJoueurs.addAll(Arrays.asList("Carey Price", "G", "31", "0"));
 
+        // Joueurs visiteurs.
+        listeJoueurs.addAll(Arrays.asList("", "", "00", "1"));
+        listeJoueurs.addAll(Arrays.asList("Rene Bourque", "AG", "17", "1"));
+        listeJoueurs.addAll(Arrays.asList("Nathan MacKinnon", "C", "29", "1"));
+        listeJoueurs.addAll(Arrays.asList("Jarome Iginla", "AD", "12", "1"));
+        listeJoueurs.addAll(Arrays.asList("Tyson Barrie", "D", "4", "1"));
+        listeJoueurs.addAll(Arrays.asList("Nikita Zadorov", "AD", "16", "1"));
+        listeJoueurs.addAll(Arrays.asList("Calvin Pickard", "G", "31", "1"));
+
+        // Insère les joueurs et leurs informations tour à tour.
         for (int i = 0; i < listeJoueurs.size(); i = i + 4) {
             if (i >= 28) {
                 Joueur joueurL = new Joueur();
@@ -63,10 +70,16 @@ public class Seeder {
         }
     }
 
+    /**
+     * Peuple la base de données dans la table des officiels.
+     *
+     * @param dbHelper : L'assistant de la base de données.
+     */
     public void seedArbitre(DBHelper dbHelper) {
         listeOfficiels = new ArrayList<String>();
         listeOfficielsMatch = new ArrayList<Officiel>();
 
+        // Officiels de la partie.
         listeOfficiels.addAll(Arrays.asList("Arbitre", "Jon McIsaac"));
         listeOfficiels.addAll(Arrays.asList("Arbitre", "Wes McCauley"));
         listeOfficiels.addAll(Arrays.asList("Juge de lignes", "Shandor Alphonso"));
@@ -77,6 +90,7 @@ public class Seeder {
         listeOfficiels.addAll(Arrays.asList("Chronométreur", "Marc Plante"));
         listeOfficiels.addAll(Arrays.asList("Marqueur", "Daniel Guay"));
 
+        // Insère les officiels et leur informations tour à tour.
         for (int i = 0; i < listeOfficiels.size(); i = i + 2) {
             Officiel officiel = new Officiel();
             officiel.type = listeOfficiels.get(i);

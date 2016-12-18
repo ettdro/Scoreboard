@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Champ texte du titre. -->
     <TextView
         android:text="Hockey Scoreboard"
         android:layout_width="wrap_content"
@@ -14,6 +15,7 @@
         android:textSize="72sp"
         android:textColor="#000000"/>
 
+    <!-- Bouton pour aller au Scoreboard. -->
     <Button
         android:text="Scoreboard"
         android:layout_width="243dp"
@@ -24,6 +26,7 @@
         android:textSize="24sp"
         android:background="#31CC0E" />
 
+    <!-- Bouton pour aller inscrire les joueurs et les officiels. -->
     <Button
         android:text="Inscription"
         android:layout_width="243dp"
@@ -34,6 +37,7 @@
         android:textSize="24sp"
         android:background="#FFFF00" />
 
+    <!-- Bouton pour quitter. -->
     <Button
         android:text="Quitter"
         android:layout_width="243dp"

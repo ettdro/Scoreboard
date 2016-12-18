@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Bouton pour démarrer les chronomètres. -->
     <Button
         android:text="Start"
         android:layout_width="227dp"
@@ -14,6 +15,7 @@
         android:backgroundTint="#04ff00"
         android:textSize="36sp" />
 
+    <!-- Bouton pour remettre à zéro tous les chronomètres. -->
     <Button
         android:text="Reset"
         android:layout_width="227dp"
@@ -24,6 +26,7 @@
         android:layout_height="71dp"
         android:textSize="36sp" />
 
+    <!-- Bouton pour mettre sur pause tous les chronomètres. -->
     <Button
         android:text="Pause"
         android:layout_width="227dp"
@@ -34,6 +37,7 @@
         android:backgroundTint="#FFE500"
         android:textSize="36sp" />
 
+    <!-- Bouton pour ajouter un but aux visiteurs. -->
     <Button
         android:layout_height="wrap_content"
         android:layout_x="163dp"
@@ -43,6 +47,7 @@
         android:textSize="36sp"
         android:layout_width="157dp" />
 
+    <!-- Champ texte pour désigner le côté des visiteurs. -->
     <TextView
         android:text="VISITEUR"
         android:layout_width="wrap_content"
@@ -53,6 +58,7 @@
         android:textStyle="normal|bold"
         android:textSize="80sp" />
 
+    <!-- Champ texte qui représente le score des visiteurs. -->
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
@@ -64,6 +70,7 @@
         android:textStyle="normal|bold"
         android:textAllCaps="false" />
 
+    <!-- Champ texte pour désigner le côté des locaux. -->
     <TextView
         android:text="LOCAL"
         android:layout_width="wrap_content"
@@ -74,6 +81,7 @@
         android:textStyle="normal|bold"
         android:textSize="80sp" />
 
+    <!-- Bouton pour enlever un but aux visiteurs. -->
     <Button
         android:text="-"
         android:layout_height="wrap_content"
@@ -83,6 +91,7 @@
         android:layout_width="157dp"
         android:textSize="36sp" />
 
+    <!-- Champ texte qui représente le score des locaux. -->
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
@@ -93,6 +102,7 @@
         android:textSize="150sp"
         android:textStyle="normal|bold" />
 
+    <!-- Bouton pour enlever un but aux locaux. -->
     <Button
         android:text="-"
         android:layout_height="wrap_content"
@@ -102,6 +112,7 @@
         android:layout_width="157dp"
         android:textSize="36sp" />
 
+    <!-- Bouton pour ajouter un but aux locaux. -->
     <Button
         android:text="+"
         android:layout_height="wrap_content"
@@ -111,6 +122,7 @@
         android:layout_width="157dp"
         android:textSize="36sp" />
 
+    <!-- Zone pour le chronomètre principal. -->
     <ImageView
         android:layout_width="247dp"
         android:layout_height="110dp"
@@ -121,6 +133,7 @@
         android:minHeight="100dp"
         android:id="@+id/imageViewChrono" />
 
+    <!-- Bouton pour ajouter un tir aux visiteurs. -->
     <Button
         android:text="+"
         android:layout_width="76dp"
@@ -130,6 +143,7 @@
         android:id="@+id/buttonTirsUpV"
         android:textSize="14sp" />
 
+    <!-- Bouton pour ajouter un tir aux locaux. -->
     <Button
         android:text="+"
         android:layout_x="691dp"
@@ -139,6 +153,7 @@
         android:layout_width="76dp"
         android:layout_height="61dp" />
 
+    <!-- Bouton pour enlever un tir aux locaux. -->
     <Button
         android:text="-"
         android:layout_x="691dp"
@@ -148,6 +163,7 @@
         android:layout_width="76dp"
         android:layout_height="61dp" />
 
+    <!-- Bouton pour enlever un tir aux visiteurs. -->
     <Button
         android:text="-"
         android:layout_x="530dp"
@@ -157,6 +173,7 @@
         android:layout_width="76dp"
         android:layout_height="61dp" />
 
+    <!-- Champ texte qui indique la période. -->
     <TextView
         android:text="1"
         android:layout_width="wrap_content"
@@ -167,6 +184,7 @@
         android:textSize="50sp"
         android:textStyle="normal|bold" />
 
+    <!-- Champ texte pour écrire "Période". -->
     <TextView
         android:text="PÉRIODE:"
         android:layout_width="wrap_content"
@@ -176,6 +194,7 @@
         android:id="@+id/periodeLabel"
         android:textSize="36sp" />
 
+    <!-- Champ texte qui indique les tirs des visiteurs. -->
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
@@ -186,6 +205,7 @@
         android:textSize="60sp"
         android:textStyle="normal|bold" />
 
+    <!-- Champ texte qui indique les tirs des locaux. -->
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
@@ -196,23 +216,17 @@
         android:textSize="60sp"
         android:textStyle="normal|bold" />
 
+    <!-- Champ texte pour écrire "Tirs". -->
     <TextView
         android:text="TIRS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="612dp"
         android:layout_y="295dp"
-        android:id="@+id/textView"
+        android:id="@+id/tirsLabel"
         android:textSize="36sp" />
 
-    <TextView
-        android:text=""
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="29dp"
-        android:layout_y="464dp"
-        android:id="@+id/txtView" />
-
+    <!-- Champ texte pour le chronomètre principal. -->
     <TextView
         android:id="@+id/timerText"
         android:layout_width="211dp"
@@ -224,6 +238,7 @@
         android:layout_x="549dp"
         android:layout_y="52dp" />
 
+    <!-- Spinner pour choisir le joueur de la pénalité 1 (visiteur). -->
     <Spinner
         android:layout_width="282dp"
         android:layout_height="wrap_content"
@@ -232,6 +247,7 @@
         android:id="@+id/spinnerPenaltyV1"
         style="@android:style/Widget.Spinner" />
 
+    <!-- Spinner pour choisir le joueur de la pénalité 2 (visiteur). -->
     <Spinner
         android:layout_width="282dp"
         android:layout_height="wrap_content"
@@ -240,6 +256,7 @@
         android:id="@+id/spinnerPenaltyV2"
         style="@android:style/Widget.Spinner" />
 
+    <!-- Spinner pour choisir le joueur de la pénalité 1 (local). -->
     <Spinner
         android:layout_width="282dp"
         android:layout_height="wrap_content"
@@ -248,6 +265,7 @@
         android:id="@+id/spinnerPenaltyL1"
         style="@android:style/Widget.Spinner" />
 
+    <!-- Affiche le numéro du joueur de la pénalité 1 (local). -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -256,6 +274,7 @@
         android:id="@+id/penalite3"
         android:textSize="40sp" />
 
+    <!-- Spinner pour choisir le joueur de la pénalité 2 (local). -->
     <Spinner
         android:layout_width="282dp"
         android:layout_height="wrap_content"
@@ -264,6 +283,7 @@
         android:id="@+id/spinnerPenaltyL2"
         style="@android:style/Widget.Spinner" />
 
+    <!-- Affiche le numéro du joueur de la pénalité 2 (local). -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -272,6 +292,7 @@
         android:id="@+id/penalite4"
         android:textSize="40sp" />
 
+    <!-- Bouton pour modifier le temps du chronomètre principal. -->
     <Button
         android:layout_width="56dp"
         android:layout_height="wrap_content"
@@ -280,6 +301,7 @@
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/buttonSetTimer" />
 
+    <!-- Bouton pour modifier le temps de la pénalité 1 (local). -->
     <Button
         android:layout_width="56dp"
         android:layout_height="wrap_content"
@@ -288,6 +310,7 @@
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/setTimerPenalite3" />
 
+    <!-- Bouton pour modifier le temps de la pénalité 2 (local). -->
     <Button
         android:layout_width="56dp"
         android:layout_height="wrap_content"
@@ -296,6 +319,7 @@
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/setTimerPenalite4" />
 
+    <!-- Bouton pour modifier le temps de la pénalité 1 (visiteur). -->
     <Button
         android:layout_width="56dp"
         android:layout_height="wrap_content"
@@ -304,6 +328,7 @@
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/setTimerPenalite1" />
 
+    <!-- Bouton pour modifier le temps de la pénalité 2 (visiteur). -->
     <Button
         android:layout_width="56dp"
         android:layout_height="wrap_content"
@@ -312,6 +337,7 @@
         android:drawableStart="@android:drawable/ic_dialog_dialer"
         android:id="@+id/setTimerPenalite2" />
 
+    <!-- Affiche le numéro du joueur de la pénalité 1 (visiteur). -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -320,6 +346,7 @@
         android:id="@+id/penalite1"
         android:textSize="40sp" />
 
+    <!-- Texte qui indique le temps restant à la pénalité 1 (visiteur). -->
     <TextView
         android:text="00:00"
         android:layout_width="wrap_content"
@@ -329,6 +356,7 @@
         android:id="@+id/timerPenalite1"
         android:textSize="40sp" />
 
+    <!-- Affiche le numéro du joueur de la pénalité 2 (visiteur). -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -337,6 +365,7 @@
         android:id="@+id/penalite2"
         android:textSize="40sp" />
 
+    <!-- Texte qui indique le temps restant à la pénalité 2 (visiteur). -->
     <TextView
         android:text="00:00"
         android:layout_width="wrap_content"
@@ -346,6 +375,7 @@
         android:id="@+id/timerPenalite2"
         android:textSize="40sp" />
 
+    <!-- Bouton pour afficher tous les officiels de la partie. -->
     <Button
         android:text="Officiels"
         android:layout_width="wrap_content"
@@ -355,6 +385,7 @@
         android:id="@+id/buttonListerOfficiels"
         tools:text="Officiels" />
 
+    <!-- Texte qui indique le temps restant à la pénalité 1 (local). -->
     <TextView
         android:text="00:00"
         android:layout_width="wrap_content"
@@ -364,6 +395,7 @@
         android:id="@+id/timerPenalite3"
         android:textSize="40sp" />
 
+    <!-- Texte qui indique le temps restant à la pénalité 2 (local). -->
     <TextView
         android:text="00:00"
         android:layout_width="wrap_content"

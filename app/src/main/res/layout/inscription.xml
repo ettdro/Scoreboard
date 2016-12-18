@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Texte de la zone des arbitres. -->
     <TextView
         android:text="Arbitres"
         android:layout_width="wrap_content"
@@ -15,6 +16,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Bouton pour retourner au menu principal. -->
     <Button
         android:text="Retour"
         android:layout_width="200dp"
@@ -25,6 +27,7 @@
         android:textSize="24sp"
         android:background="#FF0000"/>
 
+    <!-- Bouton pour sauvegarder les données. -->
     <Button
         android:text="Sauvegarder"
         android:layout_width="200dp"
@@ -35,6 +38,7 @@
         android:textSize="24sp"
         android:background="#31CC0E"/>
 
+    <!-- Texte de la zone des juges de but. -->
     <TextView
         android:text="Juges de but"
         android:layout_width="wrap_content"
@@ -46,6 +50,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Texte de la zone de l'annonceur. -->
     <TextView
         android:text="Annonceur"
         android:layout_width="wrap_content"
@@ -57,6 +62,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Zone texte pour inscrire le nom de l'annonceur. -->
     <EditText
         android:layout_width="136dp"
         android:layout_height="wrap_content"
@@ -68,6 +74,7 @@
         android:id="@+id/Annonceur_input"
         tools:text="Nom" />
 
+    <!-- Texte de la zone du chronométreur. -->
     <TextView
         android:text="Chronométreur"
         android:layout_width="wrap_content"
@@ -79,6 +86,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Zone pour inscrire le nom du chronométreur. -->
     <EditText
         android:layout_width="129dp"
         android:layout_height="wrap_content"
@@ -90,6 +98,7 @@
         android:id="@+id/Chronometreur_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom du marqueur. -->
     <EditText
         android:layout_width="134dp"
         android:layout_height="wrap_content"
@@ -101,6 +110,7 @@
         android:id="@+id/Marqueur_input"
         tools:text="Nom" />
 
+    <!-- Texte pour la zone du marqueur. -->
     <TextView
         android:text="Marqueur"
         android:layout_width="wrap_content"
@@ -112,6 +122,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Zone pour inscrire le nom de l'arbitre 1. -->
     <EditText
         android:layout_width="142dp"
         android:layout_height="wrap_content"
@@ -123,6 +134,7 @@
         android:id="@+id/Arbitre1_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom du juge de ligne 1. -->
     <EditText
         android:layout_width="130dp"
         android:layout_height="wrap_content"
@@ -134,6 +146,7 @@
         android:id="@+id/JugeL1_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom du juge de ligne 2. -->
     <EditText
         android:layout_width="132dp"
         android:layout_height="wrap_content"
@@ -145,6 +158,7 @@
         android:id="@+id/JugeL2_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom du juge de but 2. -->
     <EditText
         android:layout_width="131dp"
         android:layout_height="wrap_content"
@@ -156,6 +170,7 @@
         android:id="@+id/JugeB2_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom du juge de but 1. -->
     <EditText
         android:layout_width="128dp"
         android:layout_height="wrap_content"
@@ -167,6 +182,7 @@
         android:id="@+id/JugeB1_input"
         tools:text="Nom" />
 
+    <!-- Texte pour la zone des locaux. -->
     <TextView
         android:text="Local"
         android:layout_width="wrap_content"
@@ -178,6 +194,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Texte pour la zone du coach local. -->
     <TextView
         android:text="Coach"
         android:layout_width="wrap_content"
@@ -189,6 +206,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Texte pour la zone du coach visiteur. -->
     <TextView
         android:text="Coach"
         android:layout_width="wrap_content"
@@ -200,6 +218,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Texte pour la zone de l'assistant coach local. -->
     <TextView
         android:text="Assistant Coach"
         android:layout_width="wrap_content"
@@ -211,6 +230,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Texte pour la zone de l'assistant coach visiteur -->
     <TextView
         android:text="Assistant Coach"
         android:layout_width="wrap_content"
@@ -222,6 +242,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Zone pour inscrire le nom du coach visiteur. -->
     <EditText
         android:layout_width="136dp"
         android:layout_height="wrap_content"
@@ -233,6 +254,7 @@
         android:id="@+id/CoachVis_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom du coach local. -->
     <EditText
         android:layout_width="136dp"
         android:layout_height="wrap_content"
@@ -244,6 +266,7 @@
         android:id="@+id/CoachLoc_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom de l'assistant coach visiteur. -->
     <EditText
         android:layout_width="136dp"
         android:layout_height="wrap_content"
@@ -255,6 +278,7 @@
         android:id="@+id/AssCoachVis_input"
         tools:text="Nom" />
 
+    <!-- Texte pour la zone des joueurs visiteurs. -->
     <TextView
         android:text="Joueur"
         android:layout_width="wrap_content"
@@ -266,6 +290,7 @@
         android:textColor="#000000"
         tools:text="Joueur" />
 
+    <!-- Spinner pour choisir le numéro du joueur local. -->
     <Spinner
         android:layout_width="60dp"
         android:layout_height="45dp"
@@ -273,6 +298,7 @@
         android:layout_y="405dp"
         android:id="@+id/NumeroJoueurLoc" />
 
+    <!-- Spinner pour choisir la position du joueur local. -->
     <Spinner
         android:layout_width="60dp"
         android:layout_height="45dp"
@@ -280,6 +306,7 @@
         android:layout_y="405dp"
         android:id="@+id/PositionJoueurLoc" />
 
+    <!-- Texte pour la zone des joueurs locaux. -->
     <TextView
         android:text="Joueur"
         android:layout_width="wrap_content"
@@ -291,6 +318,7 @@
         android:textColor="#000000"
         tools:text="Joueur" />
 
+    <!-- Zone pour inscrire le nom de l'assistant coach local. -->
     <EditText
         android:layout_width="136dp"
         android:layout_height="wrap_content"
@@ -302,6 +330,7 @@
         android:id="@+id/AssCoachLoc_input"
         tools:text="Nom" />
 
+    <!-- Zone pour inscrire le nom d'un joueur local. -->
     <EditText
         android:layout_width="149dp"
         android:layout_height="wrap_content"
@@ -313,6 +342,7 @@
         android:id="@+id/JoueurNomLoc"
         tools:text="Nom" />
 
+    <!-- Spinner pour choisir le numéro du joueur visiteur. -->
     <Spinner
         android:layout_width="60dp"
         android:layout_height="45dp"
@@ -320,6 +350,7 @@
         android:layout_y="405dp"
         android:id="@+id/NumeroJoueurVis" />
 
+    <!-- Spinner pour choisir la position du joueur visiteur. -->
     <Spinner
         android:layout_width="60dp"
         android:layout_height="45dp"
@@ -327,6 +358,7 @@
         android:layout_y="405dp"
         android:id="@+id/PositionJoueurVis" />
 
+    <!-- Zone pour inscrire le nom d'un joueur visiteur. -->
     <EditText
         android:layout_width="149dp"
         android:layout_height="wrap_content"
@@ -338,6 +370,7 @@
         android:id="@+id/JoueurNomVis"
         tools:text="Nom" />
 
+    <!-- Bouton pour ajouter le joueur visiteur à la liste des joueurs visiteurs. -->
     <Button
         android:text="Ajouter"
         android:layout_width="wrap_content"
@@ -347,6 +380,7 @@
         android:id="@+id/AjouterVis"
         tools:text="Ajouter" />
 
+    <!-- Affiche tous les joueurs locaux inscrits. -->
     <ListView
         android:layout_width="304dp"
         android:layout_height="123dp"
@@ -354,6 +388,7 @@
         android:layout_y="508dp"
         android:id="@+id/ViewJoueurLoc" />
 
+    <!-- Affiche tous les joueurs visiteurs inscrits. -->
     <ListView
         android:layout_width="304dp"
         android:layout_height="123dp"
@@ -361,6 +396,7 @@
         android:layout_y="508dp"
         android:id="@+id/ViewJoueurVis" />
 
+    <!-- Texte du titre de la page d'inscription. -->
     <TextView
         android:text="Inscription"
         android:layout_width="wrap_content"
@@ -372,6 +408,7 @@
         tools:text="Inscription"
         android:textColor="#000000" />
 
+    <!-- Texte pour la zone des visiteurs. -->
     <TextView
         android:text="Visiteur"
         android:layout_width="wrap_content"
@@ -383,6 +420,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Texte de la zone des juges de lignes. -->
     <TextView
         android:text="Juges de lignes"
         android:layout_width="wrap_content"
@@ -394,6 +432,7 @@
         android:textSize="24sp"
         android:textColor="#000000" />
 
+    <!-- Bouton pour ajouter le joueur à la liste des joueurs locaux. -->
     <Button
         android:text="Ajouter"
         android:layout_width="wrap_content"
@@ -403,6 +442,7 @@
         android:id="@+id/AjouterLoc"
         tools:text="Ajouter" />
 
+    <!-- Zone pour inscrire le nom de l'arbitre 2. -->
     <EditText
         android:layout_width="145dp"
         android:layout_height="wrap_content"

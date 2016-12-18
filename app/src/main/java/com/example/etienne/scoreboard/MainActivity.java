@@ -1,44 +1,32 @@
 package com.example.etienne.scoreboard;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.CountDownTimer;
-import android.os.Debug;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-import org.w3c.dom.Text;
-
-import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Classe pour gérer le scoreboard.
+ *
+ * @author Étienne Drolet et Marc Plante.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private int tirsVisiteurs = 0;
     private int tirsLocaux = 0;
-
 
     private TextView scoreVLabel;
     private TextView scoreLLabel;
@@ -52,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     TextView periodeText;
     int periode = 1;
 
-    // TIMER
+    // Variables pour les chronomètres.
     private boolean isPaused;
     private long time;
     private long timeP1;
@@ -70,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
     private long milliLeftP4;
     private long min;
     private long sec;
-    TextView timerText;
     private boolean timerHasStarted;
     private boolean penaliteHasStarted;
+
+    TextView timerText;
 
     TextView penalite1;
     TextView penalite2;
@@ -90,18 +79,24 @@ public class MainActivity extends AppCompatActivity {
     Button setTimerPenalite4;
     Button buttonSetTimer;
 
-
+    /**
+     * Crée les éléments de la vue du menu principal.
+     *
+     * @param savedInstanceState : L'état de l'application enregistré.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
 
+        // Lance les seeders pour peupler la base de données.
         final Seeder seeder = new Seeder();
         DBHelper dbHelper = new DBHelper(this);
         dbHelper.deleteAll();
         seeder.seed(dbHelper);
         seeder.seedArbitre(dbHelper);
 
+        // Initialisation de données dans des variables.
         this.timerText = (TextView) findViewById(R.id.timerText);
         this.periodeText = (TextView) findViewById(R.id.periodeText);
 
@@ -122,10 +117,13 @@ public class MainActivity extends AppCompatActivity {
         this.setTimerPenalite3 = (Button) findViewById(R.id.setTimerPenalite3);
         this.setTimerPenalite4 = (Button) findViewById(R.id.setTimerPenalite4);
 
-
-
         final Button buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Démarre les chronomètres.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 if (isPaused) {
                     isPaused = false;
@@ -158,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
 
         final Button buttonPause = (Button) findViewById(R.id.buttonPause);
         buttonPause.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Pause tous les chronomètres.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 isPaused = true;
                 if (timerHasStarted) {
@@ -170,6 +173,11 @@ public class MainActivity extends AppCompatActivity {
 
         final Button buttonReset = (Button) findViewById(R.id.buttonReset);
         buttonReset.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Remets à zéro tous les chronomètres.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 if (timerHasStarted) {
                     timerHasStarted = false;
@@ -189,6 +197,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.buttonSetTimer.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet de définir un temps au chronomètre principal.
+             *
+             * @param view : La vue dans laquelle on clique.
+             */
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -200,6 +213,12 @@ public class MainActivity extends AppCompatActivity {
                 input.setFilters(FilterArray);
                 alert.setView(input);
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change le temps du chronomètre à celui choisi.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (!(input.getText().toString().isEmpty())) {
                             time = Long.valueOf(input.getText().toString());
@@ -212,6 +231,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Ne change pas le temps du chronomètre.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //Put actions for CANCEL button here, or leave in blank
                     }
@@ -222,6 +247,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         this.setTimerPenalite1.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet de définir un temps au chronomètre de la pénalité 1 (visiteur).
+             *
+             * @param view : La vue dans laquelle on clique.
+             */
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -233,6 +263,12 @@ public class MainActivity extends AppCompatActivity {
                 input.setFilters(FilterArray);
                 alert.setView(input);
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change le temps du chronomètre à celui choisi.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (!(input.getText().toString().isEmpty())) {
                             timeP1 = Long.valueOf(input.getText().toString());
@@ -245,6 +281,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Ne change pas le temps du chronomètre.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //Put actions for CANCEL button here, or leave in blank
                     }
@@ -254,6 +296,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.setTimerPenalite2.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet de définir un temps au chronomètre de la pénalité 2 (visiteur).
+             *
+             * @param view : la vue dans laquelle on clique.
+             */
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -265,6 +312,12 @@ public class MainActivity extends AppCompatActivity {
                 input.setFilters(FilterArray);
                 alert.setView(input);
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change le temps du chronomètre à celui choisi.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (!(input.getText().toString().isEmpty())) {
                             timerPenalite2.setText("0" + String.valueOf(timeP1) + ":00");
@@ -272,6 +325,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Ne change pas le temps du chronomètre.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //Put actions for CANCEL button here, or leave in blank
                     }
@@ -281,6 +340,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.setTimerPenalite3.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet de définir un temps au chronomètre de la pénalité 1 (local).
+             *
+             * @param view : la vue dans laquelle on clique.
+             */
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -292,6 +356,12 @@ public class MainActivity extends AppCompatActivity {
                 input.setFilters(FilterArray);
                 alert.setView(input);
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change le temps du chronomètre à celui choisi.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (!(input.getText().toString().isEmpty())) {
                             timerPenalite3.setText("0" + String.valueOf(Long.valueOf(input.getText().toString())) + ":00");
@@ -299,6 +369,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Ne change pas le temps du chronomètre.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //Put actions for CANCEL button here, or leave in blank
                     }
@@ -308,6 +384,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.setTimerPenalite4.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet de définir un temps au chronomètre de la pénalité 2 (local).
+             *
+             * @param view : la vue dans laquelle on clique.
+             */
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -319,6 +400,12 @@ public class MainActivity extends AppCompatActivity {
                 input.setFilters(FilterArray);
                 alert.setView(input);
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change le temps du chronomètre à celui choisi.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if (!(input.getText().toString().isEmpty())) {
                             timerPenalite4.setText("0" + String.valueOf(Long.valueOf(input.getText().toString())) + ":00");
@@ -326,6 +413,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Ne change pas le temps du chronomètre.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //Put actions for CANCEL button here, or leave in blank
                     }
@@ -334,6 +427,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Listes et spinners pour afficher et permettre le choix d'un joueur.
         final ArrayList<String> listeJoueursVString = dbHelper.getJoueursVisiteurs();
         final ArrayList<String> listeJoueursLString = dbHelper.getJoueursLocal();
         Spinner spinnerPenaltyV1 = (Spinner)findViewById(R.id.spinnerPenaltyV1);
@@ -341,6 +435,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner spinnerPenaltyL1 = (Spinner)findViewById(R.id.spinnerPenaltyL1);
         Spinner spinnerPenaltyL2 = (Spinner)findViewById(R.id.spinnerPenaltyL2);
 
+        // Permet de peupler les spinners.
         ArrayAdapter<String> adapterV1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listeJoueursVString);
         adapterV1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPenaltyV1.setAdapter(adapterV1);
@@ -358,11 +453,24 @@ public class MainActivity extends AppCompatActivity {
         spinnerPenaltyL2.setAdapter(adapterL);
 
         spinnerPenaltyV1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Change le numéro du joueur pour celui sélectionné.
+             *
+             * @param adapterView   : L'adaptateur de la vue.
+             * @param view          : La vue dans laquelle on est.
+             * @param i             : Un int.
+             * @param l             : Un int.
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 penalite1.setText(String.valueOf(seeder.listeJoueursVisiteur.get(i).numero));
             }
 
+            /**
+             * Ne change pas le numéro du joueur.
+             *
+             * @param adapterView : L'adaptateur de la vue.
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -370,11 +478,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         spinnerPenaltyV2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Change le numéro du joueur pour celui sélectionné.
+             *
+             * @param adapterView   : L'adaptateur de la vue.
+             * @param view          : La vue dans laquelle on est.
+             * @param i             : Un int.
+             * @param l             : Un int.
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 penalite2.setText(String.valueOf(seeder.listeJoueursVisiteur.get(i).numero));
             }
 
+            /**
+             * Ne change pas le numéro du joueur.
+             *
+             * @param adapterView : L'adaptateur de la vue.
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -382,11 +503,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         spinnerPenaltyL1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Change le numéro du joueur pour celui sélectionné.
+             *
+             * @param adapterView   : L'adaptateur de la vue.
+             * @param view          : La vue dans laquelle on est.
+             * @param i             : Un int.
+             * @param l             : Un int.
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 penalite3.setText(String.valueOf(seeder.listeJoueursLocal.get(i).numero));
             }
 
+            /**
+             * Ne change pas le numéro du joueur.
+             *
+             * @param adapterView : L'adaptateur de la vue.
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -394,11 +528,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         spinnerPenaltyL2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /**
+             * Change le numéro du joueur pour celui sélectionné.
+             *
+             * @param adapterView   : L'adaptateur de la vue.
+             * @param view          : La vue dans laquelle on est.
+             * @param i             : Un int.
+             * @param l             : Un int.
+             */
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 penalite4.setText(String.valueOf(seeder.listeJoueursLocal.get(i).numero));
             }
 
+            /**
+             * Ne change pas le numéro du joueur.
+             *
+             * @param adapterView : L'adaptateur de la vue.
+             */
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -409,6 +556,11 @@ public class MainActivity extends AppCompatActivity {
         scoreVLabel = (TextView) findViewById(R.id.scoreVisiteur);
         final Button scoreVUpButton = (Button) findViewById(R.id.buttonScoreUpV);
         scoreVUpButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet d'ajouter un but aux visiteurs.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 InputFilter[] FilterArray = new InputFilter[1];
@@ -420,6 +572,12 @@ public class MainActivity extends AppCompatActivity {
                 spinnerBut.setAdapter(adapterV);
                 alert.setView(spinnerBut);
                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change à l'autre spinner pour choisir le premier passeur.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                         InputFilter[] FilterArray = new InputFilter[1];
@@ -431,6 +589,12 @@ public class MainActivity extends AppCompatActivity {
                         spinnerPasse1.setAdapter(adapterV);
                         alert.setView(spinnerPasse1);
                         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            /**
+                             * Change à l'autre spinner pour choisir le deuxième passeur.
+                             *
+                             * @param dialog : La boite de dialogue.
+                             * @param whichButton : Le bouton.
+                             */
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                                 InputFilter[] FilterArray = new InputFilter[1];
@@ -442,12 +606,24 @@ public class MainActivity extends AppCompatActivity {
                                 spinnerPasse2.setAdapter(adapterV);
                                 alert.setView(spinnerPasse2);
                                 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    /**
+                                     * Augmente le pointage de 1.
+                                     *
+                                     * @param dialog : La boite de dialogue.
+                                     * @param whichButton : Le bouton.
+                                     */
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         scoreV++;
                                         scoreVLabel.setText(String.valueOf(scoreV));
                                     }
                                 });
                                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                    /**
+                                     * Annule toute l'opération.
+                                     *
+                                     * @param dialog : La boite de dialogue.
+                                     * @param whichButton : Le bouton.
+                                     */
                                     public void onClick(DialogInterface dialog, int whichButton) {
 
                                     }
@@ -456,6 +632,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                         alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            /**
+                             * Annule toute l'opération.
+                             *
+                             * @param dialog : La boite de dialogue.
+                             * @param whichButton : Le bouton.
+                             */
                             public void onClick(DialogInterface dialog, int whichButton) {
 
                             }
@@ -464,6 +646,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Annule l'opération.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                     }
@@ -474,6 +662,11 @@ public class MainActivity extends AppCompatActivity {
 
         final Button scoreVDownButton = (Button) findViewById(R.id.buttonScoreDownV);
         scoreVDownButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Enlève un point aux visiteurs.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 if (scoreV > 0) {
                     scoreV--;
@@ -488,14 +681,117 @@ public class MainActivity extends AppCompatActivity {
         scoreLLabel = (TextView) findViewById(R.id.scoreLocal);
         final Button scoreLUpButton = (Button) findViewById(R.id.buttonScoreUpLocal);
         scoreLUpButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Permet d'ajouter un but aux locaux.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
-                scoreL++;
-                scoreLLabel.setText(String.valueOf(scoreL));
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                InputFilter[] FilterArray = new InputFilter[1];
+                FilterArray[0] = new InputFilter.LengthFilter(2);
+                alert.setTitle("BUT!");
+                final Spinner spinnerBut = new Spinner(MainActivity.this);
+                ArrayAdapter<String> adapterV = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, listeJoueursLString);
+                adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerBut.setAdapter(adapterV);
+                alert.setView(spinnerBut);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    /**
+                     * Change à l'autre spinner pour choisir le premier passeur.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        InputFilter[] FilterArray = new InputFilter[1];
+                        FilterArray[0] = new InputFilter.LengthFilter(2);
+                        alert.setTitle("PASSE 1");
+                        final Spinner spinnerPasse1 = new Spinner(MainActivity.this);
+                        ArrayAdapter<String> adapterV = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, listeJoueursLString);
+                        adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerPasse1.setAdapter(adapterV);
+                        alert.setView(spinnerPasse1);
+                        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            /**
+                             * Change à l'autre spinner pour choisir le deuxième passeur.
+                             *
+                             * @param dialog : La boite de dialogue.
+                             * @param whichButton : Le bouton.
+                             */
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                                InputFilter[] FilterArray = new InputFilter[1];
+                                FilterArray[0] = new InputFilter.LengthFilter(2);
+                                alert.setTitle("PASSE 2");
+                                final Spinner spinnerPasse2 = new Spinner(MainActivity.this);
+                                ArrayAdapter<String> adapterV = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, listeJoueursLString);
+                                adapterV.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spinnerPasse2.setAdapter(adapterV);
+                                alert.setView(spinnerPasse2);
+                                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    /**
+                                     * Augmente le pointage de 1.
+                                     *
+                                     * @param dialog : La boite de dialogue.
+                                     * @param whichButton : Le bouton.
+                                     */
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        scoreL++;
+                                        scoreLLabel.setText(String.valueOf(scoreL));
+                                    }
+                                });
+                                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                    /**
+                                     * Annule toute l'opération.
+                                     *
+                                     * @param dialog : La boite de dialogue.
+                                     * @param whichButton : Le bouton.
+                                     */
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                                    }
+                                });
+                                alert.show();
+                            }
+                        });
+                        alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            /**
+                             * Annule toute l'opération.
+                             *
+                             * @param dialog : La boite de dialogue.
+                             * @param whichButton : Le bouton.
+                             */
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                            }
+                        });
+                        alert.show();
+                    }
+                });
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    /**
+                     * Annule l'opération.
+                     *
+                     * @param dialog : La boite de dialogue.
+                     * @param whichButton : Le bouton.
+                     */
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                });
+                alert.show();
             }
         });
 
         final Button scoreLDownButton = (Button) findViewById(R.id.buttonScoreDownLocal);
         scoreLDownButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Enlève un point aux locaux.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 if (scoreL > 0) {
                     scoreL--;
@@ -510,6 +806,11 @@ public class MainActivity extends AppCompatActivity {
         tirsLabelV = (TextView) findViewById(R.id.tirsVisiteur);
         final Button tirsVUpButton = (Button) findViewById(R.id.buttonTirsUpV);
         tirsVUpButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Ajoute un tir aux visiteurs.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 tirsVisiteurs++;
                 tirsLabelV.setText(String.valueOf(tirsVisiteurs));
@@ -518,6 +819,11 @@ public class MainActivity extends AppCompatActivity {
 
         final Button tirsVDownButton = (Button) findViewById(R.id.buttonTirsDownV);
         tirsVDownButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Enlève un tir aux visiteurs.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 if (tirsVisiteurs > 0) {
                     tirsVisiteurs--;
@@ -532,6 +838,11 @@ public class MainActivity extends AppCompatActivity {
         tirsLabelL = (TextView) findViewById(R.id.tirsLocal);
         final Button tirsLUpButton = (Button) findViewById(R.id.buttonTirsUpL);
         tirsLUpButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Ajoute un tir aux visiteurs.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 tirsLocaux++;
                 tirsLabelL.setText(String.valueOf(tirsLocaux));
@@ -540,6 +851,11 @@ public class MainActivity extends AppCompatActivity {
 
         final Button tirsLDownButton = (Button) findViewById(R.id.buttonTirsDownL);
         tirsLDownButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Enlève un tir aux visiteurs.
+             *
+             * @param v : La vue dans laquelle on clique.
+             */
             public void onClick(View v) {
                 if (tirsLocaux > 0) {
                     tirsLocaux--;
@@ -551,9 +867,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Démarre le chronomètre principal.
+     *
+     * @param timeLengthMilli : Le temps en millisecondes
+     */
     public void timerStart(long timeLengthMilli) {
         timer = new CountDownTimer(timeLengthMilli, 1000) {
 
+            /**
+             * Permet d'afficher correctement le temps.
+             *
+             * @param milliTillFinish : Nombre de millisecondes avant la fin.
+             */
             @Override
             public void onTick(long milliTillFinish) {
                 milliLeft = milliTillFinish;
@@ -571,6 +897,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            /**
+             * Remets le chronomètre à zéro et augmente la période.
+             */
             @Override
             public void onFinish() {
                 if (time < 10) {
@@ -593,8 +922,18 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * Démarre le chronomètre de la pénalité 1 (visiteur).
+     *
+     * @param timeLengthMilli : Le temps en millisecondes
+     */
     public void timerStartP1(long timeLengthMilli) {
         timerP1 = new CountDownTimer(timeLengthMilli ,1000) {
+            /**
+             * Permet d'afficher correctement le temps.
+             *
+             * @param milliTillFinish : Nombre de millisecondes avant la fin.
+             */
             @Override
             public void onTick(long milliTillFinish) {
                 milliLeftP1 = milliTillFinish;
@@ -612,6 +951,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            /**
+             * Remets le chronomètre à zéro.
+             */
             @Override
             public void onFinish() {
                 if (timeP1 < 10) {
@@ -627,6 +969,9 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * Mets sur pause les chronomètres.
+     */
     public void timerPause() {
         isPaused = true;
         if (timerHasStarted) {
@@ -637,6 +982,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redémarre les chronomètres avec le temps restant.
+     */
     private void timerResume() {
         timer = null;
         timerP1 = null;
