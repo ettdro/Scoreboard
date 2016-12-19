@@ -123,16 +123,6 @@
         android:textColor="#000000" />
 
     <!-- Zone pour inscrire le nom de l'arbitre 1. -->
-    <EditText
-        android:layout_width="142dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Nom"
-        android:ems="10"
-        android:layout_x="45dp"
-        android:layout_y="190dp"
-        android:id="@+id/Arbitre1_input"
-        tools:text="Nom" />
 
     <!-- Zone pour inscrire le nom du juge de ligne 1. -->
     <EditText
@@ -343,20 +333,8 @@
         tools:text="Nom" />
 
     <!-- Spinner pour choisir le numéro du joueur visiteur. -->
-    <Spinner
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:layout_x="1080dp"
-        android:layout_y="405dp"
-        android:id="@+id/NumeroJoueurVis" />
 
     <!-- Spinner pour choisir la position du joueur visiteur. -->
-    <Spinner
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:layout_x="1160dp"
-        android:layout_y="405dp"
-        android:id="@+id/PositionJoueurVis" />
 
     <!-- Zone pour inscrire le nom d'un joueur visiteur. -->
     <EditText
@@ -381,12 +359,6 @@
         tools:text="Ajouter" />
 
     <!-- Affiche tous les joueurs locaux inscrits. -->
-    <ListView
-        android:layout_width="304dp"
-        android:layout_height="123dp"
-        android:layout_x="551dp"
-        android:layout_y="508dp"
-        android:id="@+id/ViewJoueurLoc" />
 
     <!-- Affiche tous les joueurs visiteurs inscrits. -->
     <ListView
@@ -453,5 +425,37 @@
         android:layout_y="251dp"
         android:id="@+id/Arbitre2_input"
         tools:text="Nom" />
+
+    <EditText
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Nom"
+        android:ems="10"
+        android:layout_x="45dp"
+        android:layout_y="192dp"
+        android:id="@+id/Arbitre1_input"
+        tools:text="Nom" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_x="1081dp"
+        android:layout_y="405dp"
+        android:id="@+id/NumeroJoueurVis" />
+
+    <Spinner
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_x="1161dp"
+        android:layout_y="406dp"
+        android:id="@+id/PositionJoueurVis" />
+
+    <ListView
+        android:layout_width="304dp"
+        android:layout_height="123dp"
+        android:layout_x="581dp"
+        android:layout_y="565dp"
+        android:id="@+id/ViewJoueurLoc" />
 
 </AbsoluteLayout>
