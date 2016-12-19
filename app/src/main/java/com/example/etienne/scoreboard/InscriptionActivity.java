@@ -39,25 +39,28 @@ public class InscriptionActivity extends Activity {
             }
         });
 
+        // Mets tous les numéros dans une liste.
         final ArrayList<String> numero = new ArrayList<String>() ;
         for(int i = 1; i < 100; i++) {
             String numeroStr = Integer.toString(i);
             numero.add(numeroStr);
         }
 
-        // Spinner des numeros et positions
-
+        // Mets toutes les positions dans une liste.
         final ArrayList<String> position = new ArrayList<String>() ;
         position.add("AG");
         position.add("C");
         position.add("AD");
+        position.add("D");
         position.add("G");
 
+        // Initialisation des spinners
         Spinner numeroLoc = (Spinner)findViewById(R.id.NumeroJoueurLoc);
         Spinner numeroVis = (Spinner)findViewById(R.id.NumeroJoueurVis);
         Spinner positionLoc = (Spinner)findViewById(R.id.PositionJoueurLoc);
         Spinner positionVis = (Spinner)findViewById(R.id.PositionJoueurVis);
 
+        // Peuple les spinners avec les bonnes données.
         ArrayAdapter<String> adapternumeroLoc = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, numero);
         adapternumeroLoc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numeroLoc.setAdapter(adapternumeroLoc);
@@ -73,14 +76,5 @@ public class InscriptionActivity extends Activity {
         ArrayAdapter<String> adapterpositionVis = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, position);
         adapterpositionVis.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         positionVis.setAdapter(adapterpositionVis);
-
-
-
-
-
-
-
-
-
     }
 }

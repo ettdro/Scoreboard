@@ -332,10 +332,6 @@
         android:id="@+id/JoueurNomLoc"
         tools:text="Nom" />
 
-    <!-- Spinner pour choisir le numéro du joueur visiteur. -->
-
-    <!-- Spinner pour choisir la position du joueur visiteur. -->
-
     <!-- Zone pour inscrire le nom d'un joueur visiteur. -->
     <EditText
         android:layout_width="149dp"
@@ -357,8 +353,6 @@
         android:layout_y="454dp"
         android:id="@+id/AjouterVis"
         tools:text="Ajouter" />
-
-    <!-- Affiche tous les joueurs locaux inscrits. -->
 
     <!-- Affiche tous les joueurs visiteurs inscrits. -->
     <ListView
@@ -437,6 +431,7 @@
         android:id="@+id/Arbitre1_input"
         tools:text="Nom" />
 
+    <!-- Spinner pour choisir le numéro du joueur visiteur. -->
     <Spinner
         android:layout_width="60dp"
         android:layout_height="45dp"
@@ -444,18 +439,20 @@
         android:layout_y="405dp"
         android:id="@+id/NumeroJoueurVis" />
 
+    <!-- Spinner pour choisir la position du joueur visiteur. -->
     <Spinner
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:layout_x="1161dp"
-        android:layout_y="406dp"
+        android:layout_y="405dp"
         android:id="@+id/PositionJoueurVis" />
 
+    <!-- Affiche tous les joueurs locaux inscrits. -->
     <ListView
         android:layout_width="304dp"
         android:layout_height="123dp"
-        android:layout_x="581dp"
-        android:layout_y="565dp"
+        android:layout_x="546dp"
+        android:layout_y="508dp"
         android:id="@+id/ViewJoueurLoc" />
 
 </AbsoluteLayout>
